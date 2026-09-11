@@ -1,0 +1,17 @@
+{% extends '@Interfacing/base.html.twig' %}
+{% block body %}
+<h2>Policy {{ action }}</h2>
+<form method="post">
+  {% if item is null %}
+    <label>Policy ID</label><br>
+    <input name="policyId"><br>
+  {% else %}
+    <p>Policy ID: {{ item.policyId }}</p>
+  {% endif %}
+  <label>Version</label><br>
+  <input name="policyVersion" value="{{ item.policyVersion ?? 'v1' }}"><br>
+  <label>Description</label><br>
+  <textarea name="description" rows="4" cols="50">{{ item.description ?? '' }}</textarea><br>
+  <button type="submit">Save</button>
+</form>
+{% endblock %}

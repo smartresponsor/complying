@@ -1,0 +1,36 @@
+replicaCount: 3
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: compliance.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+otel:
+  enabled: true
+  endpoint: http://otel-collector:4317
+env:
+  - name: COMPLIANCE_HMAC_KEY
+    valueFrom:
+      secretKeyRef:
+        name: compliance-secrets
+        key: hmacKey
+  - name: COMPLIANCE_WEBHOOK_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: compliance-secrets
+        key: webhookSecret
+readinessProbe:
+  httpGet:
+    path: /status
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10

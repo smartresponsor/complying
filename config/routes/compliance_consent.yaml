@@ -1,0 +1,3 @@
+compliance_consent:
+  resource: App\Complying\Controller\ConsentController
+  type: attribute

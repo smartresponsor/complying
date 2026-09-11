@@ -1,0 +1,3 @@
+compliance_policy_history:
+  resource: App\Complying\Controller\PolicyHistoryController
+  type: attribute

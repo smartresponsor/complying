@@ -1,0 +1,12 @@
+parameters:
+  compliance.role.endpoint: 'https://role.local/policy/decide'
+
+services:
+  App\Complying\Service\Policy\RolePolicyClient:
+    arguments:
+      $httpClient: '@http_client'
+      $endpoint: '%compliance.role.endpoint%'
+  App\Complying\Service\CompliancePolicyService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\ServiceInterface\CompliancePolicyServiceInterface: '@App\Complying\Service\CompliancePolicyService'

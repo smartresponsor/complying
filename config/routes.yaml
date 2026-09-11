@@ -1,0 +1,41 @@
+compliance_admin_audit:
+  resource: routes/compliance_admin_audit.yaml
+
+compliance_case:
+  resource: routes/compliance_case.yaml
+
+compliance_config:
+  resource: routes/compliance_config.yaml
+
+compliance_consent:
+  resource: routes/compliance_consent.yaml
+
+compliance_export:
+  resource: routes/compliance_export.yaml
+
+compliance_integration:
+  resource: routes/compliance_integration.yaml
+
+compliance_legal_hold:
+  resource: routes/compliance_legal_hold.yaml
+
+compliance_ops:
+  resource: routes/compliance_ops.yaml
+
+compliance_policies:
+  resource: routes/compliance_policies.yaml
+
+compliance_policy_history:
+  resource: routes/compliance_policy_history.yaml
+
+compliance_retention_ui:
+  resource: routes/compliance_retention_ui.yaml
+
+compliance_sanction:
+  resource: routes/compliance_sanction.yaml
+
+compliance_ui:
+  resource: routes/compliance_ui.yaml
+
+compliance_vendor:
+  resource: routes/compliance_vendor.yaml

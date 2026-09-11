@@ -1,0 +1,4 @@
+compliance_decisions:
+  path: /compliance/decisions
+  controller: App\Complying\Controller\DecisionLogController
+  methods: [GET]

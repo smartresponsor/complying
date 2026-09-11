@@ -1,0 +1,10 @@
+services:
+  App\Complying\Service\WebhookSigner:
+    arguments:
+      $secret: '%env(COMPLIANCE_WEBHOOK_SECRET)%'
+
+  App\Complying\Service\SignedIncidentWebhookService:
+    decorates: 'App\Complying\Service\IncidentWebhookService'
+    arguments:
+      - '@App\Complying\Service\SignedIncidentWebhookService.inner'
+      - '@App\Complying\Service\WebhookSigner'

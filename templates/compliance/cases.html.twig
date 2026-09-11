@@ -1,0 +1,29 @@
+{% extends '@Interfacing/base.html.twig' %}
+
+{% block title %}Compliance cases{% endblock %}
+
+{% block body %}
+<h1 style="font-size:20px;margin-bottom:12px;">Compliance cases</h1>
+<table border="1" cellspacing="0" cellpadding="6">
+  <tr>
+    <th>ID</th>
+    <th>Status</th>
+    <th>Tenant</th>
+    <th>Action</th>
+  </tr>
+  {% for case in cases %}
+  <tr>
+    <td>{{ case.id }}</td>
+    <td>{{ case.status }}</td>
+    <td>{{ case.tenantId ?? '' }}</td>
+    <td>
+      <form method="post" action="/admin/compliance/cases/{{ case.id }}/close" style="display:inline;">
+        <button type="submit">close</button>
+      </form>
+    </td>
+  </tr>
+  {% else %}
+  <tr><td colspan="4">no cases</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

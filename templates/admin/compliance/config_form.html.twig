@@ -1,0 +1,15 @@
+{% extends '@Interfacing/base.html.twig' %}
+{% block body %}
+<h2>Config {{ action }}</h2>
+<form method="post">
+  {% if action == 'create' %}
+    <label>Key</label><br>
+    <input name="keyName" value="{{ item.keyName ?? '' }}"><br>
+  {% endif %}
+  <label>Value</label><br>
+  <textarea name="value" rows="4" cols="50">{{ item.value ?? '' }}</textarea><br>
+  <label>Scope</label><br>
+  <input name="scope" value="{{ item.scope ?? '' }}"><br>
+  <button type="submit">Save</button>
+</form>
+{% endblock %}

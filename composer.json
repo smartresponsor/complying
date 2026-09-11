@@ -1,0 +1,81 @@
+{
+  "name": "complying/compliance",
+  "description": "Smart Responsor compliance policy, evidence, retention, and case workflow component.",
+  "type": "symfony-bundle",
+  "license": "proprietary",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^8.4",
+    "ext-json": "*",
+    "cruding/crud": "*@dev",
+    "doctrine/doctrine-bundle": "^3.2",
+    "doctrine/doctrine-migrations-bundle": "^4.0",
+    "doctrine/orm": "^3.5",
+    "easycorp/easyadmin-bundle": "^5.0",
+    "interfacing/interface": "*@dev",
+    "objecting/object": "*@dev",
+    "psr/log": "^3.0",
+    "symfony/console": "^8.1",
+    "symfony/dependency-injection": "^8.1",
+    "symfony/dotenv": "^8.1",
+    "symfony/expression-language": "^8.1",
+    "symfony/framework-bundle": "^8.1",
+    "symfony/http-client": "^8.1",
+    "symfony/messenger": "^8.1",
+    "symfony/monolog-bundle": "^4.0",
+    "symfony/runtime": "^8.1",
+    "symfony/security-bundle": "^8.1",
+    "symfony/twig-bundle": "^8.1",
+    "symfony/uid": "^8.1",
+    "symfony/validator": "^8.1",
+    "symfony/yaml": "^8.1",
+    "viewing/view": "*@dev"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.95",
+    "gating/gate": "*@dev",
+    "phpstan/phpstan": "^2.2",
+    "phpstan/phpstan-doctrine": "^2.0",
+    "phpstan/phpstan-symfony": "^2.0",
+    "phpunit/phpunit": "^12.0",
+    "symfony/browser-kit": "^8.1",
+    "symfony/css-selector": "^8.1"
+  },
+  "autoload": {"psr-4": {"App\\Complying\\": "src/"}},
+  "autoload-dev": {"psr-4": {"App\\Complying\\Tests\\": "tests/"}},
+  "repositories": [
+    {"type": "path", "url": "../Cruding", "options": {"symlink": true}},
+    {"type": "path", "url": "../Viewing", "options": {"symlink": true}},
+    {"type": "path", "url": "../Interfacing", "options": {"symlink": true}},
+    {"type": "path", "url": "../Objecting", "options": {"symlink": true}},
+    {"type": "path", "url": "../Gating", "options": {"symlink": true}}
+  ],
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true,
+      "symfony/flex": true,
+      "symfony/runtime": true
+    },
+    "sort-packages": true
+  },
+  "extra": {
+    "symfony": {"allow-contrib": false, "require": "8.1.*"},
+    "symfony-bundle": {"class": "App\\Complying\\ComplyingBundle"}
+  },
+  "scripts": {
+    "test": "phpunit",
+    "phpstan": "phpstan analyse --memory-limit=1G",
+    "php-cs-fixer": "php-cs-fixer fix --dry-run --diff --verbose",
+    "lint:yaml": "php bin/console lint:yaml config --parse-tags",
+    "lint:container": "php bin/console lint:container",
+    "doctrine:schema:parity": [
+      "php bin/console doctrine:database:create --if-not-exists --env=test --no-interaction",
+      "php bin/console doctrine:migrations:migrate --env=test --no-interaction",
+      "php bin/console doctrine:schema:validate --env=test",
+      "php bin/console doctrine:migrations:up-to-date --env=test"
+    ],
+    "gating": "@php ../Gating/bin/gating check --target=. --severity-config=../Gating/.gating/config/severity.yaml",
+    "quality": ["@lint:yaml", "@lint:container", "@php-cs-fixer", "@phpstan", "@test", "@gating"]
+  }
+}

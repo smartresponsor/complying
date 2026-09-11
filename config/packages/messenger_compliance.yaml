@@ -1,0 +1,6 @@
+framework:
+  messenger:
+    transports:
+      compliance_async: 'in-memory://'
+    routing:
+      App\Complying\Message\ComplianceIncidentCreated: compliance_async

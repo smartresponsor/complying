@@ -1,0 +1,9 @@
+compliance_cases:
+  path: /compliance/cases
+  controller: App\Complying\Controller\CaseController::list
+  methods: [GET]
+
+compliance_case_close:
+  path: /compliance/cases/{id}/close
+  controller: App\Complying\Controller\CaseController::close
+  methods: [POST]

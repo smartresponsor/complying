@@ -1,0 +1,3 @@
+compliance_admin_audit:
+  resource: App\Complying\Controller\AdminAuditController
+  type: attribute

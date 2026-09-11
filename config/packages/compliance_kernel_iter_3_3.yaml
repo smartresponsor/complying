@@ -1,0 +1,28 @@
+parameters:
+  policy_dir: '%kernel.project_dir%/policies'
+
+services:
+  App\Complying\Service\PolicyRepository:
+    arguments:
+      $policyDir: '%policy_dir%'
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\RealtimeGuard:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\Payment\PaymentGuard:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  App\Complying\Command\PolicyLintCommand:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  App\Complying\Command\GuardEvaluateCommand:
+    autowire: true
+    autoconfigure: true
+    public: true

@@ -1,0 +1,7 @@
+security:
+  providers:
+    users_in_memory:
+      memory: ~
+  firewalls:
+    main:
+      security: false

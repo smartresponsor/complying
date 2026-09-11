@@ -1,0 +1,9 @@
+compliance_metrics:
+  path: /compliance/metrics
+  controller: App\Complying\Controller\MetricsController
+  methods: [GET]
+
+compliance_status:
+  path: /compliance/status
+  controller: App\Complying\Controller\StatusController
+  methods: [GET]

@@ -1,0 +1,3 @@
+compliance_legal_hold:
+  resource: App\Complying\Controller\LegalHoldController
+  type: attribute

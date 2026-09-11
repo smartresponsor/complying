@@ -1,0 +1,4 @@
+compliance_sanction_import:
+  path: /compliance/sanction/import
+  controller: App\Complying\Controller\SanctionController
+  methods: [POST]

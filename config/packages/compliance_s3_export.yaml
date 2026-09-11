@@ -1,0 +1,8 @@
+services:
+  App\Complying\Service\S3ExportClient:
+    arguments:
+      $client: '@aws.s3'
+      $bucket: '%env(COMPLIANCE_EXPORT_BUCKET)%'
+      $prefix: 'compliance/export'
+
+  App\Complying\Service\S3DecisionExportService: ~

@@ -1,0 +1,7 @@
+services:
+  App\Complying\Service\ComplianceOtelTracer: ~
+  App\Complying\Service\TracingCompliancePolicyService:
+    decorates: 'App\Complying\ServiceInterface\CompliancePolicyServiceInterface'
+    arguments:
+      - '@App\Complying\Service\TracingCompliancePolicyService.inner'
+      - '@App\Complying\Service\ComplianceOtelTracer'

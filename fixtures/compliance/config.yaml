@@ -1,0 +1,4 @@
+config:
+  compliance.webhook.endpoint: "https://example.com/compliance/webhook"
+  compliance.dlp.keep_raw: false
+  compliance.export.enabled: true

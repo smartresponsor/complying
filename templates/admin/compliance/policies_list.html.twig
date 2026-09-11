@@ -1,0 +1,18 @@
+{% extends '@Interfacing/base.html.twig' %}
+{% block body %}
+<h2>Compliance policies</h2>
+<a href="{{ path('admin_compliance_policies_new') }}">New</a>
+<table>
+  <tr><th>ID</th><th>Policy ID</th><th>Version</th><th>Source</th><th>Updated</th><th></th></tr>
+  {% for item in items %}
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.policyId }}</td>
+      <td>{{ item.policyVersion }}</td>
+      <td>{{ item.source }}</td>
+      <td>{{ item.updatedAt|date('Y-m-d H:i') }}</td>
+      <td><a href="{{ path('admin_compliance_policies_edit', {id: item.id}) }}">edit</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

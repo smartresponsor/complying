@@ -1,0 +1,25 @@
+services:
+  App\Complying\Service\RiskEngine:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\CaseQueueService:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\Provider\SumsubClient:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\Provider\OnfidoClient:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\Provider\ComplyAdvantageClient:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Command\ComplianceIngestCommand:
+    autowire: true
+    autoconfigure: true
+    public: true

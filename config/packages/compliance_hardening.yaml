@@ -1,0 +1,10 @@
+parameters:
+  compliance.fallback_to_deferred: true
+
+services:
+  App\Complying\Service\ComplianceGuard:
+    autowire: true
+    autoconfigure: true
+    arguments:
+      $fallbackToDeferred: '%compliance.fallback_to_deferred%'
+    public: true

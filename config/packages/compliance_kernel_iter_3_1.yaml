@@ -1,0 +1,21 @@
+services:
+  App\Complying\Service\ComplianceGatewayService:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\LimitEvaluator:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\RiskScorer:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\EventListener\OrderPlacedComplianceListener:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Command\ComplianceScanCommand:
+    autowire: true
+    autoconfigure: true
+    public: true

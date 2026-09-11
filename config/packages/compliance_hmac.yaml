@@ -1,0 +1,5 @@
+services:
+  App\Complying\EventSubscriber\ComplianceHmacSubscriber:
+    arguments:
+      $sharedKey: '%env(COMPLIANCE_HMAC_KEY)%'
+      $tolerance: 120

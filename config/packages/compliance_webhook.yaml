@@ -1,0 +1,9 @@
+parameters:
+  compliance.webhook.endpoint: 'https://ops.local/compliance'
+  compliance.webhook.secret: null
+
+services:
+  App\Complying\Service\WebhookNotifier:
+    arguments:
+      $endpoint: '%compliance.webhook.endpoint%'
+      $secret: '%compliance.webhook.secret%'

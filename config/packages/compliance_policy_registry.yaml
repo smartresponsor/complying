@@ -1,0 +1,9 @@
+parameters:
+  compliance.role.policies_endpoint: 'https://role.local/policy/list'
+
+services:
+  App\Complying\Service\PolicyRegistryService:
+    autowire: true
+    autoconfigure: true
+    arguments:
+      $endpoint: '%compliance.role.policies_endpoint%'

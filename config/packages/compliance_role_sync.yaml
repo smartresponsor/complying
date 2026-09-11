@@ -1,0 +1,16 @@
+services:
+  App\Complying\Service\SecurityRoleActorResolver:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\Service\RoleAwareCompliancePolicyService:
+    decorates: 'App\Complying\ServiceInterface\CompliancePolicyServiceInterface'
+    arguments:
+      - '@App\Complying\Service\RoleAwareCompliancePolicyService.inner'
+      - '@App\Complying\Service\SecurityRoleActorResolver'
+
+  App\Complying\Service\RoleAwareComplianceAuditTrailService:
+    decorates: 'App\Complying\Service\ComplianceAuditTrailService'
+    arguments:
+      - '@App\Complying\Service\RoleAwareComplianceAuditTrailService.inner'
+      - '@App\Complying\Service\SecurityRoleActorResolver'

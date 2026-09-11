@@ -1,0 +1,7 @@
+sanctions:
+  - id: "SAN-001"
+    name: "Test Person 1"
+    country: "RU"
+  - id: "SAN-002"
+    name: "Test Entity 2"
+    country: "IR"

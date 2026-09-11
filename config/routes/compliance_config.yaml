@@ -1,0 +1,14 @@
+compliance_config_list:
+  path: /compliance/config
+  controller: App\Complying\Controller\ComplianceConfigController::list
+  methods: [GET]
+
+compliance_config_get:
+  path: /compliance/config/{key}
+  controller: App\Complying\Controller\ComplianceConfigController::get
+  methods: [GET]
+
+compliance_config_put:
+  path: /compliance/config/{key}
+  controller: App\Complying\Controller\ComplianceConfigController::set
+  methods: [PUT, POST]

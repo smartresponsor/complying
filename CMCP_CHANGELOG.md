@@ -1,0 +1,117 @@
+# CMCP Orchestration Journal
+
+## engine-20260911150912-complying-03d180
+
+### Iteration 1 — reconnaissance and baseline
+
+- Console MCP repository access recovered for `D:\\PhpstormProjects\\www\\Complying`; branch `master` has no commits, no upstream, origin `git@github.com:smartresponsor/complying.git`, and the existing repository tree is entirely untracked. No cleanup/reset was performed.
+- Read local README, Composer development/production manifests, service/routes configuration, DTO/service/test surfaces, existing CMCP journal, and package quality configuration. Composer declares Objecting, Cruding, Viewing, and Interfacing with local path repositories using symlinks; production manifest uses packaged dependencies.
+- Read Objecting, Cruding, Viewing, and Interfacing README/AGENTS/Composer contracts that were available, plus Canonization architecture README and Canon000/001/002/003/019 normative rules and Gating README/AGENTS/Composer enforcement surface.
+- Canon mapping: role-first technical roots; mirrored Service/Repository interfaces; explicit `DTO` path/casing/suffix; default Symfony `App\\` root; no Domain/Port/Adapter taxonomy; generic CRUD remains in Cruding; Objecting owns reusable system fields; Viewing owns rendering boundary; Interfacing owns shared shell/integration presentation.
+- Domain/market baseline: mature compliance systems require deterministic policy evaluation, explainable decisions, auditable evidence, retention/legal hold, sanctions/consent workflows, failure-safe diagnostics, and observable decision paths. Generic CRUD, reusable system fields, shared rendering infrastructure, and shell ownership remain outside Complying.
+- Report-first Gating exposed multiple pre-existing canon debts. Selected RC-critical bounded workstream: repair `ComplianceDecisionDTO` PSR-4 identity and runtime mutability contract because the file lived under `src/DTO/` but declared `App\\Complying\\Service`, while policy decorators mutate `outcome` and `facts` despite those properties being readonly.
+- Growth/post-RC workstream: role-root normalization, removal of forbidden `src/Adapter/`, remaining DTO suffix migrations, tenant/Vendor semantic migration after data classification, naming-prefix cleanup, PHPDoc coverage, and broader maturity/documentation uplift.
+- Planned gates: Composer validation, Gating, PHPUnit, PHPStan, Symfony YAML/container lint, targeted searches, Git status/diff, then integration only if repository baseline permits safe staging.
+
+### Iteration 2 — material implementation
+
+- Moved `ComplianceDecisionDTO` logically into its factual `App\\Complying\\DTO` namespace without relocating the file.
+- Updated all service consumers to import the canonical DTO class explicitly; existing interfaces/tests already referenced the canonical DTO namespace.
+- Kept `policyId` and `policyVersion` readonly while making only `outcome` and `facts` mutable, matching the existing decorator pipeline that intentionally tightens decisions and enriches facts.
+
+### Iteration 3 — verification and fix
+
+- `composer test` now executes 29 tests; the prior `ComplianceDecisionDTO` autoload/namespace failure is gone. Residual suite state is 5 unrelated errors, 2 missing-script failures, and 1 discovery warning involving legacy/missing interfaces, attempts to mock final classes, and absent E2E/SLO fixtures.
+- Removed obsolete PHPStan option `checkMissingIterableValueType`; PHPStan 2.2 now analyses 196 files and reports real pre-existing source issues instead of configuration startup failure.
+- Corrected the Messenger import from nonexistent `packages/messenger.yaml` to factual `packages/messenger_compliance.yaml`.
+- Re-ran Gating: `canon.007.psr4_identity` is now PASS. Remaining failures are independent structural/naming/DTO/empty-catch/Adapter/PHPDoc/config-prefix debts already present in the baseline.
+- Symfony YAML/container lint exposed standalone bootstrap defects progressively. Added explicit SecurityBundle configuration, loaded existing Doctrine config, removed obsolete Doctrine `auto_generate_proxy_classes`, and bound `IncidentWebhookService::$targetUrl` after broad service discovery.
+
+### Iteration 4 — debt closure and integration assessment
+
+- Symfony lint now progresses through Security, Doctrine, Messenger, and the webhook service and stops at the next pre-existing DI contract: `PolicyRegistryService::$endpoint` is overwritten by broad `App\\Complying\\` service registration. The same configuration pattern affects multiple package-local explicit service/decorator definitions and is a bounded configuration-architecture debt rather than a safe one-line tail.
+- Updated README package-readiness text to reflect the now-present development/production Composer manifests and to state that executable gate failures remain release blockers.
+- No destructive cleanup was performed. Remaining RC debts were not mass-renamed or mechanically migrated because they span role-root moves, DTO API renames, Adapter removal, tenant/Vendor semantics, service-decoration ordering, and broken test contracts.
+- Git integration is unsafe in the current repository state: `master` has no commits and the entire pre-existing product baseline is untracked, including `.env`. Staging only task files would create a partial initial repository; staging the whole baseline would exceed this task and risks committing unrelated/private state. Therefore no stage/commit/push/PR/merge is authorized by the safety constraints of this run.
+
+### Iteration 5 — final acceptance and handoff
+
+- RC-critical DTO identity/mutability work is materially implemented and Canon007 is green.
+- Final acceptance is not RC-green: PHPUnit, PHPStan, Gating, Symfony YAML, and container lint still expose factual pre-existing debts; current Symfony lint/container first stop is `PolicyRegistryService::$endpoint` due service-definition ordering/override semantics.
+- Composer manifest validation is syntactically valid but strict validation warns about the intentionally unbound local `*@dev` helper constraints.
+- Repository remains `master`, no commits, no upstream; origin is `git@github.com:smartresponsor/complying.git`. Remote integration was intentionally not attempted because a safe initial baseline commit does not exist.
+- Zero authorized in-scope tails remain for the selected bounded RC workstream. The next repository-level RC track should first establish a reviewed initial Git baseline (excluding secrets), then normalize DI service-definition ownership/order and address the recorded structural/test debts in bounded waves.
+
+## engine-20260906000059-complying-d9b08d
+
+### Iteration 1 — reconnaissance and baseline
+
+- Read the authoritative execution specification, existing CMCP journal, repository README, Git state, service and route configuration, representative controllers/tests, and the available canonical contracts from Objecting, Cruding, Viewing, Interfacing, Gating, and Canonization.
+- Repository state: branch `master`; 17 untracked top-level entries; no root `composer.json`; no active unfinished task was established by the existing journal.
+- Market/enterprise baseline inside the compliance boundary: mature compliance systems require deterministic policy decisions, explainability, immutable audit evidence, retention/legal hold, tenant/identity isolation, operational health, and observable failure handling. Generic CRUD, reusable system fields, shared presentation, and shell contracts remain outside Complying.
+- Selected RC-critical work: repair controller service discovery, which currently points at nonexistent `src/Http/Compliance/` although routes and classes use `src/Controller/`, and add a regression test for this integration contract.
+- Material risks: the repository is wholly untracked and lacks standalone Composer/package gates; tenant identity occurrences require semantic/data classification under the Objecting canon and are not safe for mechanical migration.
+- Gates: direct configuration/test reads, targeted text searches, PHP syntax checks when available, repository gate inventory, and final Git status/diff inspection.
+
+### RC-critical workstream
+
+- Restore factual Symfony controller service wiring and protect it with an executable configuration contract test.
+- Preserve business action routes while leaving generic CRUD ownership with Cruding.
+- Keep the unresolved tenant/Vendor identity migration report-first and data-safe.
+
+### Growth workstream
+
+- Establish the verified standalone Composer/bundle surface with Objecting, Cruding, Viewing, and Interfacing dependencies.
+- Classify and migrate tenant identity to the canonical Vendor/Objecting model only after runtime and data semantics are proven.
+- Add synchronized architecture/component graphs and lifecycle/observability documentation.
+
+### Iteration 2 — material implementation
+
+- Corrected `config/services.yaml` so `App\\Complying\\Controller\\` discovers the factual `src/Controller/` tree instead of nonexistent `src/Http/Compliance/`.
+- Added `tests/Configuration/ControllerServiceWiringTest.php` to assert both the canonical YAML resource and the directory's existence.
+- Kept the change inside Complying's integration/configuration responsibility; no generic CRUD implementation, Entity migration, deletion, staging, commit, or push was performed.
+
+### Iteration 3 — verification and continuation decision
+
+- PHP syntax gate passed for the new regression test: `php -l tests/Configuration/ControllerServiceWiringTest.php` returned no syntax errors.
+- Repository searches across 320 files found zero stale `../src/Http/Compliance/` references and exactly the expected configuration/test references to `../src/Controller/`.
+- RC planning reported zero canon issues but cannot declare standalone readiness because the repository has no `composer.json`, no detected validation commands, and the entire current tree is untracked.
+- Final bounded decision: controller service wiring is repaired and statically protected. Full PHPUnit/container/YAML execution remains unavailable until the component has a verified Composer/Symfony package or is mounted into the host application.
+- No files were staged, committed, pushed, or deleted, in accordance with the authoritative specification.
+
+## engine-20260905235725-complying-7bd10e
+
+### Iteration 1 — reconnaissance and baseline
+
+- Read the authoritative execution specification, repository README, Git state, representative configuration, routes, source references, tests, CI references, and the available canonical contracts from Objecting, Cruding, Viewing, Interfacing, Gating, and Canonization.
+- Repository state: branch `master`; the current product tree is untracked; `composer.json` is absent.
+- Documentation/graph search found no local architecture, roadmap, component, or memory graph for Complying.
+- Selected bounded RC-critical work: replace the stale iteration-only README identity with a factual component overview and explicit package-readiness limitation.
+- Material risk: creating a Composer package manifest without a verified package identity, bundle contract, dependency versions, and installability tests would exceed this bounded acceptance test.
+- Gates: factual path/reference searches, Git diff/status inspection, and any repository checks available without inventing missing package metadata.
+
+### RC-critical workstream
+
+- Keep documentation aligned with the actual compliance responsibility: policy evaluation, decisions, audit trail, retention/legal hold, sanctions, consent, and operational integration.
+- Make packaging limitations explicit until a verified Composer package surface exists.
+- Preserve helper ownership: Objecting system fields, Cruding generic CRUD, Viewing presentation helpers, and Interfacing public shell contracts.
+
+### Growth workstream
+
+- After package identity is decided, add and validate the standalone Composer/Symfony bundle surface.
+- Add an explicit component/architecture graph and keep it synchronized with the platform memory graph.
+- Mature policy lifecycle documentation around versioning, explainability, rollout, rollback, and observability.
+
+### Iteration 2 — material implementation
+
+- Updated `README.md` to use the canonical Complying identity and describe the current responsibility boundary.
+- Added a factual packaging/readiness section instead of implying standalone installability.
+
+### Iteration 3 — verification and continuation decision
+
+- Re-read `README.md` and this journal after the patch; both are complete and present in the workspace root.
+- Factual searches confirmed the documented realtime guard service, payment guard, command, configuration, test, and `App\\Complying\\` namespace references in the current tree.
+- Git status remains on `master` with 17 untracked top-level entries, including the two expected documentation files; no file was staged, committed, pushed, or deleted.
+- `git diff` is empty because the entire repository tree is untracked, so verification used direct file reads, repository searches, and status inspection.
+- Composer validation, package scripts, PHPStan, PHPUnit, Symfony container/YAML, and Doctrine gates are unavailable as package gates because the root `composer.json` is absent; no manifest was invented.
+- Continuation decision: the bounded acceptance test is complete at iteration 3. Remaining package construction and graph creation are explicit follow-up workstreams, not silently expanded into this run.

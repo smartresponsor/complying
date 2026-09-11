@@ -1,0 +1,31 @@
+doctrine:
+  dbal:
+    default_connection: data
+    connections:
+      data:
+        url: '%env(resolve:DATABASE_DATA_URL)%'
+        driver: pdo_pgsql
+      infra:
+        url: '%env(resolve:DATABASE_INFRA_URL)%'
+        driver: pdo_sqlite
+  orm:
+    default_entity_manager: default
+    entity_managers:
+      default:
+        connection: data
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        mappings:
+          Complying:
+            is_bundle: false
+            type: attribute
+            dir: '%kernel.project_dir%/src/Entity'
+            prefix: 'App\Complying\Entity'
+            alias: Complying
+
+when@test:
+  doctrine:
+    dbal:
+      connections:
+        data:
+          url: 'sqlite:///%kernel.project_dir%/var/test-data.db'
+          driver: pdo_sqlite

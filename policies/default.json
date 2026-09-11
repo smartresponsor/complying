@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "name": "block_high_risk",
+      "if": [
+        {"field":"risk_score","op":">=","value":80}
+      ],
+      "decision": "DENY",
+      "reason": "High risk score"
+    },
+    {
+      "name": "review_large_amount",
+      "if": [
+        {"field":"amount_minor","op":">","value":5000000}
+      ],
+      "decision": "REVIEW",
+      "reason": "Large transaction"
+    },
+    {
+      "name": "allow_default",
+      "if": [],
+      "decision": "ALLOW",
+      "reason": "Default allow"
+    }
+  ]
+}

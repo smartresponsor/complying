@@ -1,0 +1,5 @@
+policies:
+  - policy_id: "order.created"
+    expression: "is_sanctioned == true or amount > 15000"
+  - policy_id: "payment.captured"
+    expression: "country in ['RU','BY','IR','KP']"

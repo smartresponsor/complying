@@ -1,0 +1,7 @@
+cases:
+  - object_id: "case-demo-1"
+    status: "new"
+    reason: "demo_review"
+  - object_id: "case-demo-2"
+    status: "processed"
+    reason: "demo_deny"
