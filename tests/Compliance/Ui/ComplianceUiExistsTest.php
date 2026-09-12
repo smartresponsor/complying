@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Ui;
 
+use App\Complying\Controller\ComplianceCaseUiController;
 use PHPUnit\Framework\TestCase;
 
 final class ComplianceUiExistsTest extends TestCase
 {
-    public function testDummy(): void
+    public function testComplianceUiControllerIsConcrete(): void
     {
-        $this->assertTrue(true);
+        $reflection = new \ReflectionClass(ComplianceCaseUiController::class);
+
+        self::assertFalse($reflection->isAbstract());
     }
 }

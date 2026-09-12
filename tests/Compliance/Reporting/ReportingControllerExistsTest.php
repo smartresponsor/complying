@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Reporting;
 
+use App\Complying\Controller\ComplianceReportingController;
 use PHPUnit\Framework\TestCase;
 
 final class ReportingControllerExistsTest extends TestCase
 {
-    public function testTrue(): void
+    public function testControllerIsConcrete(): void
     {
-        $this->assertTrue(true);
+        $reflection = new \ReflectionClass(ComplianceReportingController::class);
+
+        self::assertFalse($reflection->isAbstract());
     }
 }

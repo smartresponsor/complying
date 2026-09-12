@@ -13,6 +13,6 @@ final class CaseQueueServiceTest extends TestCase
 {
     public function testInterfaceExists(): void
     {
-        $this->assertTrue(interface_exists(\App\Complying\ServiceInterface\CaseQueueServiceInterface::class));
+        $this->assertTrue(interface_exists(\App\Complying\ServiceInterface\ComplianceCaseQueueServiceInterface::class));
     }
 }

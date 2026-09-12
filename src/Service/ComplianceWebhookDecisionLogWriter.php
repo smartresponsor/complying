@@ -10,15 +10,24 @@ namespace App\Complying\Service;
 
 use App\Complying\DTO\ComplianceDecisionDTO;
 
-final class WebhookComplianceDecisionLogWriter
+/**
+ * Coordinates the compliance webhook decision log writer responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceWebhookDecisionLogWriter
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly ComplianceDecisionLogWriter $inner,
-        private readonly WebhookNotifier $notifier,
+        private readonly ComplianceWebhookNotifier $notifier,
         private readonly bool $onlyOnIncident = true,
     ) {
     }
 
+    /**
+     * Performs the write behavior as part of the owning compliance responsibility.
+     */
     public function write(ComplianceDecisionDTO $decision, ?string $objectId, string $eventName): void
     {
         $this->inner->write($decision, $objectId, $eventName);

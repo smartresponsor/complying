@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\CaseWorker;
 
+use App\Complying\Service\ComplianceCaseWorkerService;
 use PHPUnit\Framework\TestCase;
 
 final class ComplianceCaseWorkerServiceTest extends TestCase
 {
-    public function testDummy(): void
+    public function testServiceIsConcrete(): void
     {
-        $this->assertTrue(true);
+        $reflection = new \ReflectionClass(ComplianceCaseWorkerService::class);
+
+        self::assertFalse($reflection->isAbstract());
     }
 }

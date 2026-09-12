@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Export;
 
+use App\Complying\Service\ComplianceDecisionExportService;
 use PHPUnit\Framework\TestCase;
 
 final class DecisionExportServiceTest extends TestCase
 {
-    public function testDummy(): void
+    public function testServiceIsConcrete(): void
     {
-        $this->assertTrue(true);
+        $reflection = new \ReflectionClass(ComplianceDecisionExportService::class);
+
+        self::assertFalse($reflection->isAbstract());
     }
 }

@@ -16,7 +16,7 @@ final class ComplianceGuardTest extends TestCase
 {
     public function testDenyThrows(): void
     {
-        $svc = $this->createMock(\App\Complying\ServiceInterface\CompliancePolicyServiceInterface::class);
+        $svc = $this->createMock(\App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface::class);
         $svc->method('decide')->willReturn(new ComplianceDecisionDTO('DENY', 'p1', 'v1', []));
 
         $logger = $this->createMock(\Psr\Log\LoggerInterface::class);

@@ -7,25 +7,27 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Integration;
 
-use App\Complying\Handler\Order\OrderComplianceHandler;
+use App\Complying\Handler\Order\ComplianceOrderHandler;
 use PHPUnit\Framework\TestCase;
 
 final class OrderComplianceHandlerTest extends TestCase
 {
     public function testHandlerConstructed(): void
     {
-        $service = $this->createMock(\App\Complying\ServiceInterface\CompliancePolicyServiceInterface::class);
+        $service = $this->createMock(\App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface::class);
         $service->method('decide')->willReturn(
             new \App\Complying\DTO\ComplianceDecisionDTO('PERMIT', 'p1', 'v1', [])
         );
+        $em = $this->createMock(\Doctrine\ORM\EntityManagerInterface::class);
+        $em->expects(self::once())->method('persist')->with(self::isInstanceOf(\App\Complying\Entity\ComplianceDecisionLog::class));
+        $em->expects(self::once())->method('flush');
         $writer = new \App\Complying\Service\ComplianceDecisionLogWriter(
-            $this->createMock(\Doctrine\ORM\EntityManagerInterface::class),
-            $this->createMock(\App\Complying\ServiceInterface\CaseQueueServiceInterface::class),
-            new \App\Complying\Service\Tenant\TenantProvider(new \Symfony\Component\HttpFoundation\RequestStack()),
+            $em,
+            $this->createMock(\App\Complying\ServiceInterface\ComplianceCaseQueueServiceInterface::class),
+            new \App\Complying\Provider\Tenant\ComplianceTenantProvider(new \Symfony\Component\HttpFoundation\RequestStack()),
         );
-        $handler = new OrderComplianceHandler($service, $writer);
+        $handler = new ComplianceOrderHandler($service, $writer);
 
         $handler(['id' => 'o1', 'total' => 100]);
-        $this->assertTrue(true);
     }
 }
