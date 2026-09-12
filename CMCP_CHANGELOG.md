@@ -80,7 +80,7 @@
 
 - The selected runtime/test/Symfony-8 hardening workstream is materially complete and locally verified by PHPUnit, container lint, YAML lint and PHP-CS-Fixer.
 - Full repository RC acceptance is still red because PHPStan, Gating, and Doctrine migration parity expose independent repository-wide debt. These failures are factual and intentionally remain visible; the quality gate is not being weakened or baselined away.
-- Integration policy: create a coherent commit and push/update a PR for this bounded hardening work, but do not merge while the formal release gates above remain red. The next RC track is the explicit canon/entity/migration migration wave, not speculative feature growth.
+- Integration result: signed commit `20eaeb0` (`Harden Complying runtime and Symfony 8 contracts`) was pushed to `origin/rc/complying-di-hardening`. GitHub PR creation against `master` was attempted and rejected because the remote has no valid `master` base branch (`Base ref must be a branch`; no usable base SHA). No base branch was fabricated and no merge was attempted while the formal release gates remain red. The next RC track is the explicit canon/entity/migration migration wave, not speculative feature growth.
 
 ## engine-20260906000059-complying-d9b08d
 
