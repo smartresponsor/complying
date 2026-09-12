@@ -11,7 +11,10 @@ namespace App\Complying\Entity;
 use App\Objecting\EntityTrait\Embeddable\ObjectAuditEmbeddableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: 'App\Complying\\Repository\\PolicyRegistryRepository')]
+/**
+ * Models the persisted compliance policy registry concept and protects its compliance workflow invariants.
+ */
+#[ORM\Entity(repositoryClass: 'App\Complying\\Repository\\CompliancePolicyRegistryRepository')]
 #[ORM\Table(name: 'compliance_policy_registry')]
 #[ORM\UniqueConstraint(name: 'uniq_compliance_policy_registry_policy', columns: ['policy_id'])]
 class CompliancePolicyRegistry
@@ -35,6 +38,9 @@ class CompliancePolicyRegistry
     #[ORM\Column(type: 'string', length: 32, nullable: true)]
     private ?string $source = null;
 
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(string $policyId, string $policyVersion, ?string $description = null, ?string $source = null)
     {
         $this->policyId = $policyId;
@@ -44,6 +50,9 @@ class CompliancePolicyRegistry
         $this->initializeObjectAudit();
     }
 
+    /**
+     * Updates the set from value while preserving the owning compliance invariant.
+     */
     public function setFrom(string $version, ?string $description, ?string $source): void
     {
         $this->policyVersion = $version;
@@ -52,26 +61,41 @@ class CompliancePolicyRegistry
         $this->touchModified();
     }
 
+    /**
+     * Returns the get policy id value exposed by this compliance responsibility.
+     */
     public function getPolicyId(): string
     {
         return $this->policyId;
     }
 
+    /**
+     * Returns the get policy version value exposed by this compliance responsibility.
+     */
     public function getPolicyVersion(): string
     {
         return $this->policyVersion;
     }
 
+    /**
+     * Returns the get description value exposed by this compliance responsibility.
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Returns the get source value exposed by this compliance responsibility.
+     */
     public function getSource(): ?string
     {
         return $this->source;
     }
 
+    /**
+     * Returns the get updated at value exposed by this compliance responsibility.
+     */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->getModifiedAt();

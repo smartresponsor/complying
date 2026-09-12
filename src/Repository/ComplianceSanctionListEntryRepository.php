@@ -9,17 +9,27 @@ declare(strict_types=1);
 namespace App\Complying\Repository;
 
 use App\Complying\Entity\ComplianceSanctionListEntry;
-use App\Complying\RepositoryInterface\SanctionListEntryRepositoryInterface;
+use App\Complying\RepositoryInterface\ComplianceSanctionListEntryRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-final class SanctionListEntryRepository extends ServiceEntityRepository implements SanctionListEntryRepositoryInterface
+/**
+ * Provides persistence queries for compliance sanction list entry repository records used by compliance workflows.
+ *
+ * @extends ServiceEntityRepository<ComplianceSanctionListEntry> */
+final class ComplianceSanctionListEntryRepository extends ServiceEntityRepository implements ComplianceSanctionListEntryRepositoryInterface
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ComplianceSanctionListEntry::class);
     }
 
+    /**
+     * Performs the exists by name behavior as part of the owning compliance responsibility.
+     */
     public function existsByName(string $nameEntity): bool
     {
         return (bool) $this->createQueryBuilder('s')

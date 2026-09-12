@@ -10,10 +10,16 @@ namespace App\Complying\Repository;
 
 use Doctrine\ORM\QueryBuilder;
 
-trait TenantFilterTrait
+/**
+ * Provides persistence queries for compliance tenant filter trait records used by compliance workflows.
+ */
+trait ComplianceTenantFilterTrait
 {
     private ?string $tenantId = null;
 
+    /**
+     * Performs the with tenant behavior as part of the owning compliance responsibility.
+     */
     public function withTenant(?string $tenantId): static
     {
         $clone = clone $this;
@@ -22,6 +28,9 @@ trait TenantFilterTrait
         return $clone;
     }
 
+    /**
+     * Performs the apply tenant behavior as part of the owning compliance responsibility.
+     */
     protected function applyTenant(QueryBuilder $qb, string $alias = 'c'): void
     {
         if (null !== $this->tenantId && '' !== $this->tenantId) {

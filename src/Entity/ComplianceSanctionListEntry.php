@@ -10,7 +10,10 @@ namespace App\Complying\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: 'App\Complying\\Repository\\SanctionListEntryRepository')]
+/**
+ * Models the persisted compliance sanction list entry concept and protects its compliance workflow invariants.
+ */
+#[ORM\Entity(repositoryClass: 'App\Complying\\Repository\\ComplianceSanctionListEntryRepository')]
 #[ORM\Table(name: 'compliance_sanction_list_entry')]
 class ComplianceSanctionListEntry
 {
@@ -25,12 +28,18 @@ class ComplianceSanctionListEntry
     #[ORM\Column(type: 'string', length: 64, nullable: true)]
     private ?string $listSource = null;
 
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(string $nameEntity, ?string $listSource = null)
     {
         $this->nameEntity = $nameEntity;
         $this->listSource = $listSource;
     }
 
+    /**
+     * Returns the get name value exposed by this compliance responsibility.
+     */
     public function getName(): string
     {
         return $this->nameEntity;
