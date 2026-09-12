@@ -3,7 +3,7 @@ parameters:
   compliance.webhook.secret: null
 
 services:
-  App\Complying\Service\WebhookNotifier:
+  App\Complying\Service\ComplianceWebhookNotifier:
     arguments:
       $endpoint: '%compliance.webhook.endpoint%'
       $secret: '%compliance.webhook.secret%'

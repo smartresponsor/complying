@@ -8,6 +8,7 @@
   "require": {
     "php": "^8.4",
     "ext-json": "*",
+    "aws/aws-sdk-php": "^3.394",
     "cruding/crud": "*@dev",
     "doctrine/doctrine-bundle": "^3.2",
     "doctrine/doctrine-migrations-bundle": "^4.0",
@@ -15,6 +16,7 @@
     "easycorp/easyadmin-bundle": "^5.0",
     "interfacing/interface": "*@dev",
     "objecting/object": "*@dev",
+    "open-telemetry/api": "^1.10",
     "psr/log": "^3.0",
     "symfony/console": "^8.1",
     "symfony/dependency-injection": "^8.1",
@@ -23,7 +25,7 @@
     "symfony/framework-bundle": "^8.1",
     "symfony/http-client": "^8.1",
     "symfony/messenger": "^8.1",
-    "symfony/monolog-bundle": "^4.0",
+    "monolog/monolog": "^3.12",
     "symfony/runtime": "^8.1",
     "symfony/security-bundle": "^8.1",
     "symfony/security-csrf": "^8.1",
@@ -67,8 +69,13 @@
   },
   "scripts": {
     "test": "phpunit",
+    "test:coverage": [
+      "@putenv XDEBUG_MODE=coverage",
+      "phpunit --path-coverage --coverage-text=var/coverage-summary.txt"
+    ],
     "phpstan": "phpstan analyse --memory-limit=1G",
     "php-cs-fixer": "php-cs-fixer fix --dry-run --diff --verbose",
+    "php-cs-fixer:write": "php-cs-fixer fix --verbose",
     "lint:yaml": "php bin/console lint:yaml config --parse-tags",
     "lint:container": "php bin/console lint:container",
     "doctrine:schema:parity": [
@@ -76,7 +83,12 @@
       "php bin/console doctrine:schema:validate --env=test",
       "php bin/console doctrine:migrations:up-to-date --env=test"
     ],
-    "gating": "@php ../Gating/bin/gating check --target=. --severity-config=../Gating/.gating/config/severity.yaml",
+    "canon:finalize-layout": "@php tools/canon/compliance_layout_finalize.php",
+    "canon:inventory": "@php tools/canon/compliance_inventory.php",
+    "canon:phpdoc": "@php tools/canon/compliance_phpdoc_complete.php",
+    "canon:rename-types": "@php tools/canon/compliance_type_canonicalize.php",
+    "canon:rename-yaml": "@php tools/canon/compliance_yaml_rename.php",
+    "gating": "@php ../Gating/bin/gating check --target=. --profile=.gating/compliance_profile.yaml --severity-config=../Gating/.gating/config/severity.yaml",
     "quality": ["@lint:yaml", "@lint:container", "@php-cs-fixer", "@phpstan", "@test", "@gating"]
   }
 }

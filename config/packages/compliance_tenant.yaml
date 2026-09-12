@@ -1,10 +1,10 @@
 services:
-  App\Complying\Service\TenantResolver:
+  App\Complying\Resolver\ComplianceTenantResolver:
     arguments:
       $headerName: 'X-Tenant-ID'
 
-  App\Complying\Service\TenantAwareCompliancePolicyService:
-    decorates: 'App\Complying\ServiceInterface\CompliancePolicyServiceInterface'
+  App\Complying\Service\ComplianceTenantAwarePolicyEvaluationService:
+    decorates: 'App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface'
     arguments:
-      - '@App\Complying\Service\TenantAwareCompliancePolicyService.inner'
+      - '@App\Complying\Service\ComplianceTenantAwarePolicyEvaluationService.inner'
       - '@request_stack'

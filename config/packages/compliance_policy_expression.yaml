@@ -1,13 +1,13 @@
 services:
-  App\Complying\Service\PolicyExpressionEvaluator:
+  App\Complying\Service\CompliancePolicyExpressionEvaluator:
     autowire: true
     autoconfigure: true
-  App\Complying\Service\PolicyExpressionProvider:
+  App\Complying\Provider\CompliancePolicyExpressionProvider:
     autowire: true
     autoconfigure: true
-  App\Complying\Service\ExpressionAwareCompliancePolicyService:
-    decorates: 'App\Complying\ServiceInterface\CompliancePolicyServiceInterface'
+  App\Complying\Service\ComplianceExpressionAwarePolicyEvaluationService:
+    decorates: 'App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface'
     arguments:
-      - '@App\Complying\Service\ExpressionAwareCompliancePolicyService.inner'
-      - '@App\Complying\Service\PolicyExpressionProvider'
-      - '@App\Complying\Service\PolicyExpressionEvaluator'
+      - '@App\Complying\Service\ComplianceExpressionAwarePolicyEvaluationService.inner'
+      - '@App\Complying\Provider\CompliancePolicyExpressionProvider'
+      - '@App\Complying\Service\CompliancePolicyExpressionEvaluator'

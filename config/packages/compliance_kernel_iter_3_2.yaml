@@ -1,21 +1,21 @@
 services:
-  App\Complying\Service\RiskEngine:
+  App\Complying\Service\ComplianceRiskEngine:
     autowire: true
     autoconfigure: true
 
-  App\Complying\Service\CaseQueueService:
+  App\Complying\Service\ComplianceCaseQueueService:
     autowire: true
     autoconfigure: true
 
-  App\Complying\Service\Provider\SumsubClient:
+  App\Complying\Service\Provider\ComplianceSumsubClient:
     autowire: true
     autoconfigure: true
 
-  App\Complying\Service\Provider\OnfidoClient:
+  App\Complying\Service\Provider\ComplianceOnfidoClient:
     autowire: true
     autoconfigure: true
 
-  App\Complying\Service\Provider\ComplyAdvantageClient:
+  App\Complying\Service\Provider\ComplianceComplyAdvantageClient:
     autowire: true
     autoconfigure: true
 

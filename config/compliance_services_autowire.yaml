@@ -1,0 +1,28 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Complying\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/Kernel.php'
+      - '../src/ComplyingBundle.php'
+      - '../src/EventSubscriber/ComplianceOtelHttpSubscriber.php'
+      - '../src/Service/ComplianceOtelExporter.php'
+      - '../src/Service/ComplianceOtelTracer.php'
+      - '../src/Service/ComplianceTracingPolicyEvaluationService.php'
+      - '../src/Service/ComplianceS3DecisionExportService.php'
+      - '../src/Service/ComplianceS3ExportClient.php'
+      - '../src/Service/ComplianceSignedIncidentWebhookService.php'
+      - '../src/Service/ComplianceWebhookSigner.php'
+      - '../src/Service/ComplianceExternalRiskScoreService.php'
+      - '../src/Service/ComplianceExternalRiskClient.php'
+
+  App\Complying\Controller\:
+    resource: '../src/Controller/'
+    tags: ['controller.service_arguments']
+
+  App\Complying\ServiceInterface\ComplianceCaseQueueServiceInterface: '@App\Complying\Service\ComplianceCaseQueueService'

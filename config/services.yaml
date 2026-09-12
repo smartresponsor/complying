@@ -1,11 +1,11 @@
 imports:
-  - { resource: services_autowire.yaml }
+  - { resource: compliance_services_autowire.yaml }
   - { resource: packages/framework.yaml }
   - { resource: packages/security.yaml }
   - { resource: packages/doctrine.yaml }
   - { resource: packages/doctrine_migrations.yaml }
   - { resource: packages/twig.yaml }
-  - { resource: packages/compliance.yaml }
+  - { resource: packages/compliance_core.yaml }
   - { resource: packages/compliance_policy_registry.yaml }
   - { resource: packages/compliance_policy_bridge.yaml }
   - { resource: packages/compliance_policy_expression.yaml }
@@ -18,4 +18,4 @@ imports:
   - { resource: packages/compliance_kernel_iter_3_1.yaml }
   - { resource: packages/compliance_kernel_iter_3_2.yaml }
   - { resource: packages/compliance_kernel_iter_3_3.yaml }
-  - { resource: packages/messenger_compliance.yaml }
+  - { resource: packages/messenger.yaml }
