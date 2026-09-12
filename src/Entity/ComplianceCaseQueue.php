@@ -33,6 +33,7 @@ class ComplianceCaseQueue
     #[ORM\Column(type: 'string', length: 32)]
     private string $status = 'new';
 
+    /** @var array<string, mixed> */
     #[ORM\Column(type: 'json')]
     private array $payload = [];
 
@@ -74,6 +75,7 @@ class ComplianceCaseQueue
     { /* Compatibility no-op: use setDecision() for entity-first relation. */
     }
 
+    /** @param array<string, mixed> $payload */
     public function setPayload(array $payload): void
     {
         $this->payload = $payload;
@@ -104,9 +106,15 @@ class ComplianceCaseQueue
         return $this->status;
     }
 
+    /** @return array<string, mixed> */
     public function getPayload(): array
     {
         return $this->payload;
+    }
+
+    public function getObjectId(): ?string
+    {
+        return $this->objectId;
     }
 
     public function getTenantId(): ?string

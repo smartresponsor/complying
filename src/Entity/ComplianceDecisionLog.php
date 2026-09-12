@@ -37,6 +37,7 @@ class ComplianceDecisionLog
     #[ORM\Column(type: 'string', length: 32)]
     private string $outcome;
 
+    /** @var array<string, mixed> */
     #[ORM\Column(type: 'json')]
     private array $facts = [];
 
@@ -49,6 +50,9 @@ class ComplianceDecisionLog
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $decidedAt;
 
+    /**
+     * @param array<string, mixed> $facts
+     */
     public function __construct(
         string $outcome,
         array $facts,
@@ -104,6 +108,7 @@ class ComplianceDecisionLog
         return $this->tenantId;
     }
 
+    /** @return array<string, mixed> */
     public function getFacts(): array
     {
         return $this->facts;

@@ -10,6 +10,9 @@ namespace App\Complying\DTO;
 
 final class PolicyDecision
 {
+    /**
+     * @param array<string, mixed> $obligations
+     */
     public function __construct(
         public readonly string $outcome,
         public readonly ?string $policyId,
@@ -18,6 +21,9 @@ final class PolicyDecision
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     public static function fromArray(array $data): self
     {
         return new self(

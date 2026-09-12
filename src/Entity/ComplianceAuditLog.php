@@ -32,9 +32,13 @@ class ComplianceAuditLog
     #[ORM\Column(type: 'string', length: 64, nullable: true)]
     private ?string $ip = null;
 
+    /** @var array<string, mixed> */
     #[ORM\Column(type: 'json')]
     private array $payload = [];
 
+    /**
+     * @param array<string, mixed> $payload
+     */
     public function __construct(string $action, ?string $actor, ?string $ip, array $payload)
     {
         $this->action = $action;
@@ -64,6 +68,7 @@ class ComplianceAuditLog
         return $this->ip;
     }
 
+    /** @return array<string, mixed> */
     public function getPayload(): array
     {
         return $this->payload;
