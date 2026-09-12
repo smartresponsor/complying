@@ -8,16 +8,26 @@ declare(strict_types=1);
 
 namespace App\Complying\Service;
 
-final class ExternalComplianceRiskScoreService
+/**
+ * Coordinates the compliance external risk score service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceExternalRiskScoreService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly RiskScoreService $inner,
-        private readonly ExternalRiskClient $client,
+        private readonly ComplianceRiskScoreService $inner,
+        private readonly ComplianceExternalRiskClient $client,
     ) {
     }
 
     /**
+     * Performs the score behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $facts
+     *
+     * @return array<string, mixed>
      */
     public function score(array $facts): array
     {

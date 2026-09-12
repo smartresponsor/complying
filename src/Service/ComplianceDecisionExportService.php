@@ -10,13 +10,21 @@ namespace App\Complying\Service;
 
 use Doctrine\DBAL\Connection;
 
-final class DecisionExportService
+/**
+ * Coordinates the compliance decision export service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceDecisionExportService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
     /**
+     * Performs the export decisions behavior as part of the owning compliance responsibility.
+     *
      * @return \Generator<string>
      */
     public function exportDecisions(?int $fromId = null, ?\DateTimeImmutable $fromDate = null): \Generator

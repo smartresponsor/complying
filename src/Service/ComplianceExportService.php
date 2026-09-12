@@ -11,13 +11,21 @@ namespace App\Complying\Service;
 use App\Complying\Entity\ComplianceDecisionLog;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class ExportService
+/**
+ * Coordinates the compliance export service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceExportService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly EntityManagerInterface $em)
     {
     }
 
     /**
+     * Performs the fetch decisions behavior as part of the owning compliance responsibility.
+     *
      * @return array<int, array<string, mixed>>
      */
     public function fetchDecisions(?\DateTimeImmutable $from = null, ?\DateTimeImmutable $to = null, ?string $outcome = null, ?string $event = null): array
@@ -57,11 +65,17 @@ final class ExportService
     }
 
     /**
+     * Performs the to csv behavior as part of the owning compliance responsibility.
+     *
      * @param array<int, array<string, mixed>> $rows
      */
     public function toCsv(array $rows): string
     {
         $f = fopen('php://temp', 'r+');
+        if (false === $f) {
+            throw new \RuntimeException('Unable to open temporary compliance export stream.');
+        }
+
         fputcsv($f, ['id', 'outcome', 'policy_id', 'policy_version', 'object_id', 'decided_at', 'facts_json']);
 
         foreach ($rows as $row) {
@@ -72,7 +86,7 @@ final class ExportService
                 $row['policy_version'],
                 $row['object_id'],
                 $row['decided_at'],
-                json_encode($row['facts'], \JSON_UNESCAPED_UNICODE),
+                json_encode($row['facts'], \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR),
             ]);
         }
 
@@ -84,13 +98,15 @@ final class ExportService
     }
 
     /**
+     * Performs the to ndjson behavior as part of the owning compliance responsibility.
+     *
      * @param array<int, array<string, mixed>> $rows
      */
     public function toNdjson(array $rows): string
     {
         $lines = [];
         foreach ($rows as $row) {
-            $lines[] = json_encode($row, \JSON_UNESCAPED_UNICODE);
+            $lines[] = json_encode($row, \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR);
         }
 
         return implode("\n", $lines)."\n";

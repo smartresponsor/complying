@@ -8,37 +8,49 @@ declare(strict_types=1);
 
 namespace App\Complying\Service;
 
-use OpenTelemetry\API\Trace\Span;
+use OpenTelemetry\API\Trace\SpanInterface;
 use OpenTelemetry\API\Trace\TracerInterface;
-use OpenTelemetry\Context\Context;
 
+/**
+ * Coordinates the compliance otel tracer responsibility within the Complying component and its explicit boundaries.
+ */
 final class ComplianceOtelTracer
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly TracerInterface $tracer)
     {
     }
 
     /**
-     * @param array<string, scalar|array|null> $attrs
+     * Performs the start behavior as part of the owning compliance responsibility.
+     *
+     * @param array<string, bool|float|int|string|null> $attrs
      */
-    public function start(string $nameEntity, array $attrs = []): Span
+    public function start(string $nameEntity, array $attrs = []): SpanInterface
     {
-        $spanBuilder = $this->tracer->spanBuilder($nameEntity);
-        foreach ($attrs as $k => $v) {
-            if (\is_scalar($v)) {
-                $spanBuilder->setAttribute($k, $v);
-            }
+        if ('' === $nameEntity) {
+            throw new \InvalidArgumentException('OpenTelemetry span name must not be empty.');
         }
 
-        $span = $spanBuilder->startSpan();
-        $span->activate();
+        $spanBuilder = $this->tracer->spanBuilder($nameEntity);
+        foreach ($attrs as $key => $value) {
+            if ('' === $key || null === $value) {
+                continue;
+            }
 
-        return $span;
+            $spanBuilder->setAttribute($key, $value);
+        }
+
+        return $spanBuilder->startSpan();
     }
 
-    public function end(Span $span): void
+    /**
+     * Performs the end behavior as part of the owning compliance responsibility.
+     */
+    public function end(SpanInterface $span): void
     {
         $span->end();
-        Context::storage()->detach(Context::storage()->current()); // best-effort
     }
 }

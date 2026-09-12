@@ -10,17 +10,26 @@ namespace App\Complying\Service;
 
 use App\Complying\DTO\ComplianceDecisionDTO;
 use App\Complying\Message\ComplianceIncidentCreated;
-use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
+use App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-final class MessengerCompliancePolicyService implements CompliancePolicyServiceInterface
+/**
+ * Coordinates the compliance messenger policy evaluation service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceMessengerPolicyEvaluationService implements CompliancePolicyEvaluationServiceInterface
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly CompliancePolicyServiceInterface $inner,
+        private readonly CompliancePolicyEvaluationServiceInterface $inner,
         private readonly MessageBusInterface $bus,
     ) {
     }
 
+    /**
+     * Performs the decide behavior as part of the owning compliance responsibility.
+     */
     public function decide(string $eventName, array $payload): ComplianceDecisionDTO
     {
         $decision = $this->inner->decide($eventName, $payload);

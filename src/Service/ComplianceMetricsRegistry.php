@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace App\Complying\Service;
 
-final class MetricsRegistry
+/**
+ * Coordinates the compliance metrics registry responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceMetricsRegistry
 {
     /** @var array<string, int> */
     private array $counters = [
@@ -17,21 +20,33 @@ final class MetricsRegistry
         'compliance_import_fail_total' => 0,
     ];
 
+    /**
+     * Performs the inc decision behavior as part of the owning compliance responsibility.
+     */
     public function incDecision(): void
     {
         ++$this->counters['compliance_decisions_total'];
     }
 
+    /**
+     * Updates the set cases open value while preserving the owning compliance invariant.
+     */
     public function setCasesOpen(int $count): void
     {
         $this->counters['compliance_cases_open'] = $count;
     }
 
+    /**
+     * Performs the inc import fail behavior as part of the owning compliance responsibility.
+     */
     public function incImportFail(): void
     {
         ++$this->counters['compliance_import_fail_total'];
     }
 
+    /**
+     * Performs the export behavior as part of the owning compliance responsibility.
+     */
     public function export(): string
     {
         $lines = [];

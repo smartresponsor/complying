@@ -9,12 +9,21 @@ namespace App\Complying\Service;
 
 use Doctrine\DBAL\Connection;
 
-final class ConsentChecker
+/**
+ * Coordinates the compliance consent checker responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceConsentChecker
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
+    /**
+     * Reports whether the has consent condition currently holds for this compliance responsibility.
+     */
     public function hasConsent(string $userId, string $purpose): bool
     {
         $row = $this->connection->fetchAssociative(

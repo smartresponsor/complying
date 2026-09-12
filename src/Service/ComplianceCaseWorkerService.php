@@ -12,18 +12,27 @@ use App\Complying\Entity\ComplianceCaseQueue;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Coordinates the compliance case worker service responsibility within the Complying component and its explicit boundaries.
+ */
 final class ComplianceCaseWorkerService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly LoggerInterface $logger,
     ) {
     }
 
+    /**
+     * Performs the process behavior as part of the owning compliance responsibility.
+     */
     public function process(int $limit = 50): int
     {
         $repo = $this->em->getRepository(ComplianceCaseQueue::class);
-        $items = $repo->findBy(['status' => 'new'], ['id' => 'ASC'], $limit);
+        $items = $repo->findBy(['objectState.objectStatus' => 'new'], ['id' => 'ASC'], $limit);
 
         $processed = 0;
         foreach ($items as $item) {

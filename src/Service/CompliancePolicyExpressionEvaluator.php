@@ -10,16 +10,24 @@ namespace App\Complying\Service;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-final class PolicyExpressionEvaluator
+/**
+ * Coordinates the compliance policy expression evaluator responsibility within the Complying component and its explicit boundaries.
+ */
+final class CompliancePolicyExpressionEvaluator
 {
     private ExpressionLanguage $el;
 
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct()
     {
         $this->el = new ExpressionLanguage();
     }
 
     /**
+     * Performs the evaluate behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $facts
      */
     public function evaluate(string $expression, array $facts): bool

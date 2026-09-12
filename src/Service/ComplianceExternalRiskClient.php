@@ -11,8 +11,14 @@ namespace App\Complying\Service;
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final class ExternalRiskClient
+/**
+ * Coordinates the compliance external risk client responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceExternalRiskClient
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly HttpClientInterface $httpClient,
         private readonly LoggerInterface $logger,
@@ -22,6 +28,8 @@ final class ExternalRiskClient
     }
 
     /**
+     * Performs the fetch risk behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $facts
      *
      * @return array<string, mixed>|null
@@ -38,9 +46,8 @@ final class ExternalRiskClient
 
                 return null;
             }
-            $data = $resp->toArray(false);
 
-            return \is_array($data) ? $data : null;
+            return $resp->toArray(false);
         } catch (\Throwable $e) {
             $this->logger->error('external risk failed', ['error' => $e->getMessage()]);
 

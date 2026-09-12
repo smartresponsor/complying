@@ -9,23 +9,31 @@ declare(strict_types=1);
 namespace App\Complying\Service;
 
 use App\Complying\Entity\ComplianceIncidentWebhook;
-use App\Complying\Repository\IncidentWebhookRepository;
+use App\Complying\Repository\ComplianceIncidentWebhookRepository;
 use App\Complying\ServiceInterface\ComplianceAuditTrailServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final class IncidentWebhookService
+/**
+ * Coordinates the compliance incident webhook service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceIncidentWebhookService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly HttpClientInterface $httpClient,
         private readonly EntityManagerInterface $em,
-        private readonly IncidentWebhookRepository $repo,
+        private readonly ComplianceIncidentWebhookRepository $repo,
         private readonly ComplianceAuditTrailServiceInterface $audit,
         private readonly string $targetUrl,
     ) {
     }
 
     /**
+     * Performs the send behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $incident
      */
     public function send(array $incident): void
@@ -53,6 +61,9 @@ final class IncidentWebhookService
         $this->audit->add('compliance.webhook.enqueue', $incident);
     }
 
+    /**
+     * Performs the retry behavior as part of the owning compliance responsibility.
+     */
     public function retry(int $limit = 20): int
     {
         $items = $this->repo->findPending($limit);

@@ -8,9 +8,14 @@ declare(strict_types=1);
 
 namespace App\Complying\Service;
 
-final class DlpRedactor
+/**
+ * Coordinates the compliance dlp redactor responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceDlpRedactor
 {
     /**
+     * Performs the redact array behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $data
      *
      * @return array<string, mixed>
@@ -31,6 +36,9 @@ final class DlpRedactor
         return $out;
     }
 
+    /**
+     * Performs the redact string behavior as part of the owning compliance responsibility.
+     */
     public function redactString(string $input): string
     {
         // email

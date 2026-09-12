@@ -10,12 +10,21 @@ namespace App\Complying\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Coordinates the compliance retention service responsibility within the Complying component and its explicit boundaries.
+ */
 final class ComplianceRetentionService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly EntityManagerInterface $em)
     {
     }
 
+    /**
+     * Performs the archive older than behavior as part of the owning compliance responsibility.
+     */
     public function archiveOlderThan(int $days): int
     {
         $date = (new \DateTimeImmutable('now'))->modify('-'.$days.' days');

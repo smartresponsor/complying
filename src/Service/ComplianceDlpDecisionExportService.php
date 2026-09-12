@@ -8,16 +8,24 @@ declare(strict_types=1);
 
 namespace App\Complying\Service;
 
-final class DlpDecisionExportService
+/**
+ * Coordinates the compliance dlp decision export service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceDlpDecisionExportService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly DecisionExportService $inner,
-        private readonly DlpRedactor $dlp,
+        private readonly ComplianceDecisionExportService $inner,
+        private readonly ComplianceDlpRedactor $dlp,
         private readonly bool $keepRaw = false,
     ) {
     }
 
     /**
+     * Performs the export decisions behavior as part of the owning compliance responsibility.
+     *
      * @return \Generator<string>
      */
     public function exportDecisions(?int $fromId = null, ?\DateTimeImmutable $fromDate = null): \Generator

@@ -9,12 +9,21 @@ namespace App\Complying\Service;
 
 use Doctrine\DBAL\Connection;
 
-final class LegalHoldService
+/**
+ * Coordinates the compliance legal hold service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceLegalHoldService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
+    /**
+     * Updates the set value while preserving the owning compliance invariant.
+     */
     public function set(string $objectId, string $reason, ?string $until): void
     {
         $this->connection->insert('compliance_legal_hold', [
@@ -24,6 +33,9 @@ final class LegalHoldService
         ]);
     }
 
+    /**
+     * Reports whether the is on hold condition currently holds for this compliance responsibility.
+     */
     public function isOnHold(string $objectId): bool
     {
         $row = $this->connection->fetchAssociative(

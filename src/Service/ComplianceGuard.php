@@ -11,13 +11,19 @@ namespace App\Complying\Service;
 use App\Complying\DTO\ComplianceDecisionDTO;
 use App\Complying\Exception\ComplianceDeniedException;
 use App\Complying\Exception\ComplianceUnavailableException;
-use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
+use App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Coordinates the compliance guard responsibility within the Complying component and its explicit boundaries.
+ */
 final class ComplianceGuard
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly CompliancePolicyServiceInterface $service,
+        private readonly CompliancePolicyEvaluationServiceInterface $service,
         private readonly ComplianceDeferredDecisionService $deferred,
         private readonly LoggerInterface $logger,
         private readonly bool $fallbackToDeferred = true,
@@ -25,6 +31,8 @@ final class ComplianceGuard
     }
 
     /**
+     * Performs the guard behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $payload
      *
      * @throws ComplianceDeniedException
