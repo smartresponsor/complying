@@ -83,6 +83,7 @@
       "php bin/console doctrine:schema:validate --env=test",
       "php bin/console doctrine:migrations:up-to-date --env=test"
     ],
+    "doctrine:schema:render-platforms": "php tools/doctrine/render_schema_platforms.php",
     "canon:finalize-layout": "@php tools/canon/compliance_layout_finalize.php",
     "canon:inventory": "@php tools/canon/compliance_inventory.php",
     "canon:phpdoc": "@php tools/canon/compliance_phpdoc_complete.php",

@@ -176,3 +176,13 @@
 - Composer strict validation remains structurally valid and lock-consistent; the only warnings are the four intentional local `*@dev` constraints for Cruding, Interfacing, Objecting, and Viewing.
 - Doctrine schema parity remains the sole hard release blocker: `doctrine:migrations:migrate --env=test` cannot start because `migrations/` does not exist. No historical migration baseline was fabricated from an unknown schema state.
 - Integration decision: the migrated tree is suitable for signed commit/push as an RC hardening snapshot, but the repository must not be declared fully RC-green until an authoritative Doctrine migration baseline exists and parity executes successfully.
+
+### Doctrine migration baseline closure — 2026-09-12
+
+- Established the configured `migrations/` root and generated an initial migration from current Complying ORM metadata. The first automatic diff was intentionally rejected as a release artifact because it was rendered on the test SQLite connection and therefore contained SQLite-specific DDL that would not be valid as the PostgreSQL production contract.
+- Added `tools/doctrine/render_schema_platforms.php` and the `doctrine:schema:render-platforms` Composer script. The renderer boots the canonical test metadata once and renders the same Doctrine schema through both `PostgreSQLPlatform` and `SQLitePlatform`, allowing the migration DDL to remain metadata-derived without requiring a live PostgreSQL server.
+- Reworked `DoctrineMigrations\\Version20260912205828` into a platform-aware initial baseline. PostgreSQL and SQLite branches use the exact DBAL-rendered DDL for their respective engines; unsupported database platforms abort explicitly instead of silently receiving the wrong dialect.
+- Guarded migration dry-run succeeded for one migration and 25 planned SQL statements. The verified plan fingerprint was then applied to the test database: one migration executed successfully.
+- Final Doctrine acceptance is green: `doctrine:schema:validate --env=test` reports correct mappings and an in-sync database; `doctrine:migrations:up-to-date --env=test` reports no pending migrations; the aggregate `composer doctrine:schema:parity` gate now passes.
+- A live PostgreSQL dev connection was not available because the local PostgreSQL credentials were rejected. Production PostgreSQL DDL therefore comes from Doctrine DBAL's PostgreSQL platform renderer over the same ORM schema rather than from guessed SQL or an unverified live-database diff.
+- Concurrent unrelated `.gating/*` changes appeared during this continuation. They were preserved and excluded from this migration-track commit; no attempt was made to reset, stage, or overwrite that parallel work.
