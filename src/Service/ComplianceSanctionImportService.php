@@ -9,20 +9,28 @@ declare(strict_types=1);
 namespace App\Complying\Service;
 
 use App\Complying\Entity\ComplianceSanctionListEntry;
-use App\Complying\RepositoryInterface\SanctionListEntryRepositoryInterface;
-use App\Complying\ServiceInterface\SanctionImportServiceInterface;
+use App\Complying\RepositoryInterface\ComplianceSanctionListEntryRepositoryInterface;
+use App\Complying\ServiceInterface\ComplianceSanctionImportServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class SanctionImportService implements SanctionImportServiceInterface
+/**
+ * Coordinates the compliance sanction import service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceSanctionImportService implements ComplianceSanctionImportServiceInterface
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly SanctionListEntryRepositoryInterface $repo,
+        private readonly ComplianceSanctionListEntryRepositoryInterface $repo,
     ) {
     }
 
     /**
-     * @param array<int, array{name: string, source?: string}> $entries
+     * Performs the import behavior as part of the owning compliance responsibility.
+     *
+     * @param array<int, array{nameEntity: string, source?: string}> $entries
      *
      * @return int imported count
      */

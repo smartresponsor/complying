@@ -9,22 +9,31 @@ declare(strict_types=1);
 namespace App\Complying\Service;
 
 use App\Complying\Entity\CompliancePolicyRegistry;
-use App\Complying\Repository\PolicyRegistryRepository;
+use App\Complying\Repository\CompliancePolicyRegistryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final class PolicyRegistryService
+/**
+ * Coordinates the compliance policy registry service responsibility within the Complying component and its explicit boundaries.
+ */
+final class CompliancePolicyRegistryService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly HttpClientInterface $httpClient,
-        private readonly PolicyRegistryRepository $repo,
+        private readonly CompliancePolicyRegistryRepository $repo,
         private readonly EntityManagerInterface $em,
         private readonly LoggerInterface $logger,
         private readonly string $endpoint,
     ) {
     }
 
+    /**
+     * Performs the refresh behavior as part of the owning compliance responsibility.
+     */
     public function refresh(): int
     {
         $resp = $this->httpClient->request('GET', $this->endpoint, ['timeout' => 3.0]);
@@ -58,6 +67,8 @@ final class PolicyRegistryService
     }
 
     /**
+     * Performs the list behavior as part of the owning compliance responsibility.
+     *
      * @return array<int, array<string, mixed>>
      */
     public function list(): array

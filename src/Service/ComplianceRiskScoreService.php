@@ -8,14 +8,19 @@ declare(strict_types=1);
 
 namespace App\Complying\Service;
 
-use App\Complying\DTO\RiskScoreDTO;
+use App\Complying\DTO\ComplianceRiskScoreDTO;
 
-final class RiskScoreService
+/**
+ * Coordinates the compliance risk score service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceRiskScoreService
 {
     /**
+     * Performs the calculate behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $facts
      */
-    public function calculate(array $facts): RiskScoreDTO
+    public function calculate(array $facts): ComplianceRiskScoreDTO
     {
         $score = 0;
         $reasons = [];
@@ -40,6 +45,6 @@ final class RiskScoreService
             $reasons[] = 'manual_review_flag';
         }
 
-        return new RiskScoreDTO($score, $reasons);
+        return new ComplianceRiskScoreDTO($score, $reasons);
     }
 }

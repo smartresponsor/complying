@@ -7,14 +7,23 @@ namespace App\Complying\Service;
 use Doctrine\DBAL\Connection;
 use Psr\Log\LoggerInterface;
 
-final class RiskScorer
+/**
+ * Coordinates the compliance risk scorer responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceRiskScorer
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly Connection $db,
         private readonly LoggerInterface $logger,
     ) {
     }
 
+    /**
+     * Performs the score vendor behavior as part of the owning compliance responsibility.
+     */
     public function scoreVendor(int $vendorId): float
     {
         $velocity = 0;

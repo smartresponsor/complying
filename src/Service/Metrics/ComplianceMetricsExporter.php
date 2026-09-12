@@ -10,12 +10,21 @@ namespace App\Complying\Service\Metrics;
 
 use Doctrine\DBAL\Connection;
 
-final class MetricsExporter
+/**
+ * Coordinates the compliance metrics exporter responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceMetricsExporter
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
+    /**
+     * Performs the collect behavior as part of the owning compliance responsibility.
+     */
     public function collect(): string
     {
         $decisions = (int) $this->connection->fetchOne('SELECT COUNT(*) FROM compliance_decision_log');

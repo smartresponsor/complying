@@ -7,8 +7,18 @@ declare(strict_types=1);
 
 namespace App\Complying\Service;
 
-final class PrivacyMapper
+/**
+ * Coordinates the compliance privacy mapper responsibility within the Complying component and its explicit boundaries.
+ */
+final class CompliancePrivacyMapper
 {
+    /**
+     * Performs the map behavior as part of the owning compliance responsibility.
+     *
+     * @param array<string, mixed> $facts
+     *
+     * @return array<string, mixed>
+     */
     public function map(array $facts): array
     {
         $facts['gdpr_basis'] = $facts['gdpr_basis'] ?? 'LEGITIMATE_INTEREST';

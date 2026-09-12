@@ -9,16 +9,26 @@ declare(strict_types=1);
 namespace App\Complying\Service;
 
 use App\Complying\DTO\ComplianceDecisionDTO;
-use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
+use App\Complying\Resolver\ComplianceSecurityRoleActorResolver;
+use App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface;
 
-final class RoleAwareCompliancePolicyService implements CompliancePolicyServiceInterface
+/**
+ * Coordinates the compliance role aware policy evaluation service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceRoleAwarePolicyEvaluationService implements CompliancePolicyEvaluationServiceInterface
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly CompliancePolicyServiceInterface $inner,
-        private readonly SecurityRoleActorResolver $roleResolver,
+        private readonly CompliancePolicyEvaluationServiceInterface $inner,
+        private readonly ComplianceSecurityRoleActorResolver $roleResolver,
     ) {
     }
 
+    /**
+     * Performs the decide behavior as part of the owning compliance responsibility.
+     */
     public function decide(string $eventName, array $payload): ComplianceDecisionDTO
     {
         $actor = $this->roleResolver->getCurrentActorId();

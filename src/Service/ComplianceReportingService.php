@@ -10,13 +10,21 @@ namespace App\Complying\Service;
 
 use Doctrine\DBAL\Connection;
 
-final class ReportingService
+/**
+ * Coordinates the compliance reporting service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceReportingService
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
     /**
+     * Performs the daily behavior as part of the owning compliance responsibility.
+     *
      * @return array<int, array<string, mixed>>
      */
     public function daily(?\DateTimeImmutable $date = null): array

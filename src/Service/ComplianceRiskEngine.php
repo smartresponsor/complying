@@ -7,12 +7,22 @@ namespace App\Complying\Service;
 use App\Complying\Entity\ComplianceRiskRule;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class RiskEngine
+/**
+ * Coordinates the compliance risk engine responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceRiskEngine
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly EntityManagerInterface $em)
     {
     }
 
+    /**
+     * Performs the evaluate behavior as part of the owning compliance responsibility.
+     *
+     * @param array<string, mixed> $facts */
     public function evaluate(array $facts): float
     {
         $repo = $this->em->getRepository(ComplianceRiskRule::class);
@@ -31,7 +41,7 @@ final class RiskEngine
                 $op = $cond['op'] ?? '==';
                 $val = $cond['value'] ?? null;
                 $fact = $facts[$field] ?? null;
-                $ok = $ok && $this->compare($fact, $op, $val);
+                $ok = $this->compare($fact, $op, $val);
                 if (!$ok) {
                     break;
                 }
@@ -44,7 +54,10 @@ final class RiskEngine
         return min(100.0, $score);
     }
 
-    private function compare($a, string $op, $b): bool
+    /**
+     * Performs the compare behavior as part of the owning compliance responsibility.
+     */
+    private function compare(mixed $a, string $op, mixed $b): bool
     {
         return match ($op) {
             '==' => $a == $b,

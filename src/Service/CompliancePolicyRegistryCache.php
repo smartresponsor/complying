@@ -10,15 +10,25 @@ namespace App\Complying\Service;
 
 use Doctrine\DBAL\Connection;
 
-final class PolicyRegistryCache
+/**
+ * Coordinates the compliance policy registry cache responsibility within the Complying component and its explicit boundaries.
+ */
+final class CompliancePolicyRegistryCache
 {
     /** @var array<string, array<string,mixed>> */
     private array $cache = [];
 
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
+    /**
+     * Returns the get value exposed by this compliance responsibility.
+     *
+     * @return array<string, mixed>|null */
     public function get(string $policyId): ?array
     {
         if (isset($this->cache[$policyId])) {

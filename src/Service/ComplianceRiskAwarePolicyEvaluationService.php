@@ -9,16 +9,25 @@ declare(strict_types=1);
 namespace App\Complying\Service;
 
 use App\Complying\DTO\ComplianceDecisionDTO;
-use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
+use App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface;
 
-final class RiskAwareCompliancePolicyService implements CompliancePolicyServiceInterface
+/**
+ * Coordinates the compliance risk aware policy evaluation service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceRiskAwarePolicyEvaluationService implements CompliancePolicyEvaluationServiceInterface
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly CompliancePolicyServiceInterface $inner,
-        private readonly RiskScoreService $risk,
+        private readonly CompliancePolicyEvaluationServiceInterface $inner,
+        private readonly ComplianceRiskScoreService $risk,
     ) {
     }
 
+    /**
+     * Performs the decide behavior as part of the owning compliance responsibility.
+     */
     public function decide(string $eventName, array $payload): ComplianceDecisionDTO
     {
         $decision = $this->inner->decide($eventName, $payload);
