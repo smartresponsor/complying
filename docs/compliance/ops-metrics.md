@@ -1,5 +1,5 @@
 ops-metrics sketch
-- service: App\Complying\Service\MetricsRegistry
+- service: App\Complying\Service\ComplianceMetricsRegistry
   - incDecision()
   - setCasesOpen(count)
   - incImportFail()
