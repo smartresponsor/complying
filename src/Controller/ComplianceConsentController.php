@@ -7,21 +7,30 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\Service\ConsentChecker;
+use App\Complying\Service\ComplianceConsentChecker;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * Handles the compliance consent controller HTTP boundary and delegates compliance behavior to application services.
+ */
 #[Route(path: '/compliance/consent')]
-final class ConsentController
+final class ComplianceConsentController
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly Connection $connection,
-        private readonly ConsentChecker $checker,
+        private readonly ComplianceConsentChecker $checker,
     ) {
     }
 
+    /**
+     * Performs the grant behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '', methods: ['POST'])]
     public function grant(Request $request): JsonResponse
     {
@@ -38,6 +47,9 @@ final class ConsentController
         return new JsonResponse(['ok' => true]);
     }
 
+    /**
+     * Performs the withdraw behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/withdraw', methods: ['POST'])]
     public function withdraw(Request $request): JsonResponse
     {
@@ -54,6 +66,9 @@ final class ConsentController
         return new JsonResponse(['ok' => true]);
     }
 
+    /**
+     * Performs the check behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/check', methods: ['GET'])]
     public function check(Request $request): JsonResponse
     {

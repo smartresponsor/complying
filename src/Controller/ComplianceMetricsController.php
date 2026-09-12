@@ -8,16 +8,25 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\Service\MetricsRegistry;
+use App\Complying\Service\ComplianceMetricsRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class MetricsController
+/**
+ * Handles the compliance metrics controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceMetricsController
 {
-    public function __construct(private readonly MetricsRegistry $registry)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly ComplianceMetricsRegistry $registry)
     {
     }
 
+    /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/compliance/metrics', name: 'compliance_metrics', methods: ['GET'])]
     public function __invoke(): Response
     {

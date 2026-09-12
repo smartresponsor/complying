@@ -12,12 +12,21 @@ use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class StatusController
+/**
+ * Handles the compliance status controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceStatusController
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
+    /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/compliance/status', name: 'compliance_status', methods: ['GET'])]
     public function __invoke(): JsonResponse
     {

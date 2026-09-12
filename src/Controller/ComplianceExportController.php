@@ -8,17 +8,26 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\Service\ExportService;
+use App\Complying\Service\ComplianceExportService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class ExportController
+/**
+ * Handles the compliance export controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceExportController
 {
-    public function __construct(private readonly ExportService $service)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly ComplianceExportService $service)
     {
     }
 
+    /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/compliance/export', name: 'compliance_export', methods: ['GET'])]
     public function __invoke(Request $request): Response
     {

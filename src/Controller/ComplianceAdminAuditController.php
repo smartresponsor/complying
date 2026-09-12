@@ -13,13 +13,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * Handles the compliance admin audit controller HTTP boundary and delegates compliance behavior to application services.
+ */
 #[Route(path: '/compliance/admin/audit')]
-final class AdminAuditController
+final class ComplianceAdminAuditController
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
+    /**
+     * Performs the list behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '', methods: ['GET'])]
     public function list(Request $request): JsonResponse
     {

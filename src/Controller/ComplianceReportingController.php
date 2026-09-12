@@ -8,17 +8,26 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\Service\ReportingService;
+use App\Complying\Service\ComplianceReportingService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class ReportingController
+/**
+ * Handles the compliance reporting controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceReportingController
 {
-    public function __construct(private readonly ReportingService $service)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly ComplianceReportingService $service)
     {
     }
 
+    /**
+     * Performs the daily behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/compliance/report/daily', name: 'compliance_report_daily', methods: ['GET'])]
     public function daily(Request $request): Response
     {

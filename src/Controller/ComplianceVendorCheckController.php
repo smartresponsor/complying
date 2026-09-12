@@ -8,18 +8,27 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
+use App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class VendorCheckController
+/**
+ * Handles the compliance vendor check controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceVendorCheckController
 {
-    public function __construct(private readonly CompliancePolicyServiceInterface $service)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly CompliancePolicyEvaluationServiceInterface $service)
     {
     }
 
-    #[Route(path: '/compliance/check-vendor', name: 'compliance_check_vendor', methods: ['POST'])]
+    /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     */
+    #[Route(path: '/compliance/check/vendor', name: 'compliance_check_vendor', methods: ['POST'])]
     public function __invoke(Request $request): JsonResponse
     {
         $payload = json_decode($request->getContent(), true) ?? [];

@@ -8,17 +8,26 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\Service\DecisionExportService;
+use App\Complying\Service\ComplianceDecisionExportService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class DecisionExportController
+/**
+ * Handles the compliance decision export controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceDecisionExportController
 {
-    public function __construct(private readonly DecisionExportService $service)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly ComplianceDecisionExportService $service)
     {
     }
 
+    /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/compliance/export/decisions.ndjson', name: 'compliance_export_decisions', methods: ['GET'])]
     public function __invoke(Request $request): StreamedResponse
     {

@@ -8,17 +8,26 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\ServiceInterface\CaseQueueServiceInterface;
+use App\Complying\ServiceInterface\ComplianceCaseQueueServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class CaseController
+/**
+ * Handles the compliance case controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceCaseController
 {
-    public function __construct(private readonly CaseQueueServiceInterface $service)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly ComplianceCaseQueueServiceInterface $service)
     {
     }
 
+    /**
+     * Performs the list behavior as part of the owning compliance responsibility.
+     */
     #[Route(path: '/compliance/cases', name: 'compliance_cases', methods: ['GET'])]
     public function list(): JsonResponse
     {
@@ -34,7 +43,10 @@ final class CaseController
         return new JsonResponse($data);
     }
 
-    #[Route(path: '/compliance/cases/{id}/close', name: 'compliance_case_close', methods: ['POST'])]
+    /**
+     * Performs the close behavior as part of the owning compliance responsibility.
+     */
+    #[Route(path: '/compliance/cases/close/{id}', name: 'compliance_case_close', methods: ['POST'])]
     public function close(int $id, Request $request): JsonResponse
     {
         $actor = (string) $request->headers->get('X-User', 'system');

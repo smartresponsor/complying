@@ -17,9 +17,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * Handles the compliance config admin controller HTTP boundary and delegates compliance behavior to application services.
+ */
 final class ComplianceConfigAdminController
 {
     /**
+     * Performs the list behavior as part of the owning compliance responsibility.
+     *
      * @return array<string, mixed>
      */
     #[Route(path: '/admin/compliance/config', name: 'admin_compliance_config_list', methods: ['GET'])]
@@ -31,6 +36,8 @@ final class ComplianceConfigAdminController
     }
 
     /**
+     * Performs the new behavior as part of the owning compliance responsibility.
+     *
      * @return Response|array<string, mixed>
      */
     #[Route(path: '/admin/compliance/config/new', name: 'admin_compliance_config_new', methods: ['GET', 'POST'])]
@@ -55,9 +62,11 @@ final class ComplianceConfigAdminController
     }
 
     /**
+     * Performs the edit behavior as part of the owning compliance responsibility.
+     *
      * @return Response|array<string, mixed>
      */
-    #[Route(path: '/admin/compliance/config/{id}/edit', name: 'admin_compliance_config_edit', methods: ['GET', 'POST'])]
+    #[Route(path: '/admin/compliance/config/edit/{id}', name: 'admin_compliance_config_edit', methods: ['GET', 'POST'])]
     public function edit(int $id, Request $request, ComplianceConfigRepository $repo, EntityManagerInterface $em): Response|array
     {
         $item = $repo->find($id);
@@ -82,6 +91,8 @@ final class ComplianceConfigAdminController
     }
 
     /**
+     * Performs the view payload behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $data
      *
      * @return array<string, mixed>

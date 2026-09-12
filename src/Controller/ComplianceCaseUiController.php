@@ -8,19 +8,27 @@ declare(strict_types=1);
 
 namespace App\Complying\Controller;
 
-use App\Complying\ServiceInterface\CaseQueueServiceInterface;
+use App\Complying\ServiceInterface\ComplianceCaseQueueServiceInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class CaseUiController
+/**
+ * Handles the compliance case ui controller HTTP boundary and delegates compliance behavior to application services.
+ */
+final class ComplianceCaseUiController
 {
-    public function __construct(private readonly CaseQueueServiceInterface $service)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly ComplianceCaseQueueServiceInterface $service)
     {
     }
 
     /**
+     * Performs the list behavior as part of the owning compliance responsibility.
+     *
      * @return array<string, mixed>
      */
     #[Route(path: '/admin/compliance/cases', name: 'admin_compliance_cases', methods: ['GET'])]
@@ -44,7 +52,10 @@ final class CaseUiController
         ];
     }
 
-    #[Route(path: '/admin/compliance/cases/{id}/close', name: 'admin_compliance_case_close', methods: ['POST'])]
+    /**
+     * Performs the close behavior as part of the owning compliance responsibility.
+     */
+    #[Route(path: '/admin/compliance/cases/close/{id}', name: 'admin_compliance_case_close', methods: ['POST'])]
     public function close(int $id, Request $request): Response
     {
         $actor = (string) $request->headers->get('X-User', 'admin');
