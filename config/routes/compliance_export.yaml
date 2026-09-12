@@ -1,4 +1,4 @@
 compliance_export:
   path: /compliance/export
-  controller: App\Complying\Controller\ExportController
+  controller: App\Complying\Controller\ComplianceExportController
   methods: [GET]

@@ -1,9 +1,9 @@
 admin_compliance_cases:
   path: /admin/compliance/cases
-  controller: App\Complying\Controller\CaseUiController::list
+  controller: App\Complying\Controller\ComplianceCaseUiController::list
   methods: [GET]
 
 admin_compliance_case_close:
-  path: /admin/compliance/cases/{id}/close
-  controller: App\Complying\Controller\CaseUiController::close
+  path: /admin/compliance/cases/close/{id}
+  controller: App\Complying\Controller\ComplianceCaseUiController::close
   methods: [POST]

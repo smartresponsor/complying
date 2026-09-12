@@ -6,17 +6,25 @@
 
 declare(strict_types=1);
 
-namespace App\Complying\Service;
+namespace App\Complying\Provider;
 
 use Doctrine\DBAL\Connection;
 
-final class PolicyExpressionProvider
+/**
+ * Coordinates the compliance policy expression provider responsibility within the Complying component and its explicit boundaries.
+ */
+final class CompliancePolicyExpressionProvider
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
     }
 
     /**
+     * Performs the all behavior as part of the owning compliance responsibility.
+     *
      * @return array<string, string> policy_id => expression
      */
     public function all(): array
@@ -35,6 +43,9 @@ final class PolicyExpressionProvider
         return $out;
     }
 
+    /**
+     * Returns the get value exposed by this compliance responsibility.
+     */
     public function get(string $policyId): ?string
     {
         $row = $this->connection->fetchAssociative('SELECT description FROM compliance_policy_registry WHERE policy_id = :id AND source = :src', [

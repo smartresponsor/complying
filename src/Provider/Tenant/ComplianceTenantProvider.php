@@ -6,16 +6,25 @@
 
 declare(strict_types=1);
 
-namespace App\Complying\Service\Tenant;
+namespace App\Complying\Provider\Tenant;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class TenantProvider
+/**
+ * Coordinates the compliance tenant provider responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceTenantProvider
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly RequestStack $requestStack)
     {
     }
 
+    /**
+     * Returns the get tenant id value exposed by this compliance responsibility.
+     */
     public function getTenantId(): ?string
     {
         $req = $this->requestStack->getCurrentRequest();

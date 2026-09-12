@@ -1,3 +1,3 @@
 compliance_retention_ui:
-  resource: App\Complying\Controller\RetentionController
+  resource: App\Complying\Controller\ComplianceRetentionController
   type: attribute
