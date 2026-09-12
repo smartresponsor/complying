@@ -10,7 +10,7 @@ namespace App\Complying\Controller;
 
 use App\Complying\Service\PolicyRegistryService;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class PolicyRegistryController
 {

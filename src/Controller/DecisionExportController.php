@@ -11,7 +11,7 @@ namespace App\Complying\Controller;
 use App\Complying\Service\DecisionExportService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class DecisionExportController
 {

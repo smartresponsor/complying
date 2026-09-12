@@ -13,6 +13,7 @@ use App\Complying\RepositoryInterface\ComplianceConfigRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+/** @extends ServiceEntityRepository<ComplianceConfig> */
 final class ComplianceConfigRepository extends ServiceEntityRepository implements ComplianceConfigRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)

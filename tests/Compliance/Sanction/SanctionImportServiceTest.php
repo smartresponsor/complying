@@ -15,7 +15,7 @@ final class SanctionImportServiceTest extends TestCase
     public function testImportReturnsInt(): void
     {
         $em = $this->createMock(\Doctrine\ORM\EntityManagerInterface::class);
-        $repo = $this->createMock(\App\Complying\Repository\SanctionListEntryRepository::class);
+        $repo = $this->createMock(\App\Complying\RepositoryInterface\SanctionListEntryRepositoryInterface::class);
         $repo->method('existsByName')->willReturn(false);
 
         $service = new SanctionImportService($em, $repo);

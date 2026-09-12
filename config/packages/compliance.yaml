@@ -18,6 +18,7 @@ services:
     autowire: true
     autoconfigure: true
     tags: [ 'doctrine.repository_service' ]
+  App\Complying\RepositoryInterface\SanctionListEntryRepositoryInterface: '@App\Complying\Repository\SanctionListEntryRepository'
   App\Complying\Service\Tenant\TenantProvider: ~
   App\Complying\ServiceInterface\ComplianceAuditTrailServiceInterface: '@App\Complying\Service\ComplianceAuditTrailService'
   App\Complying\Service\ComplianceConfigService:

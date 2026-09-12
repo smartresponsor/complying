@@ -42,7 +42,7 @@ final class ComplianceIngestCommand extends Command
             default => ['error' => 'unknown provider'],
         };
 
-        $output->writeln(json_encode($res, \JSON_PRETTY_PRINT));
+        $output->writeln(json_encode($res, \JSON_PRETTY_PRINT | \JSON_THROW_ON_ERROR));
 
         return Command::SUCCESS;
     }

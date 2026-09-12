@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace App\Complying\Entity;
 
 use App\Objecting\EntityTrait\Embeddable\ObjectAuditEmbeddableTrait;
-use App\Objecting\EntityTrait\Embeddable\ObjectScopeEmbeddableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: 'App\Complying\\Repository\\ComplianceConfigRepository')]
@@ -18,7 +17,6 @@ use Doctrine\ORM\Mapping as ORM;
 class ComplianceConfig
 {
     use ObjectAuditEmbeddableTrait;
-    use ObjectScopeEmbeddableTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,12 +29,15 @@ class ComplianceConfig
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $value = null;
 
+    #[ORM\Column(type: 'string', length: 128, nullable: true)]
+    private ?string $scope = null;
+
     public function __construct(string $keyName, ?string $value = null, ?string $scope = null)
     {
         $this->keyName = $keyName;
         $this->value = $value;
+        $this->scope = $scope;
         $this->initializeObjectAudit();
-        $this->initializeObjectScope(null, null, null, $scope);
     }
 
     public function getKeyName(): string
@@ -51,12 +52,12 @@ class ComplianceConfig
 
     public function getScope(): ?string
     {
-        return $this->getObjectScope();
+        return $this->scope;
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->getObjectUpdatedAt();
+        return $this->getModifiedAt();
     }
 
     public function setValue(?string $value): void
@@ -67,7 +68,7 @@ class ComplianceConfig
 
     public function setScope(?string $scope): void
     {
-        $this->setObjectScope($scope);
+        $this->scope = $scope;
         $this->touchModified();
     }
 }

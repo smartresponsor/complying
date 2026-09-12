@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace App\Complying\Service;
 
 use App\Complying\Entity\ComplianceSanctionListEntry;
-use App\Complying\Repository\SanctionListEntryRepository;
+use App\Complying\RepositoryInterface\SanctionListEntryRepositoryInterface;
 use App\Complying\ServiceInterface\SanctionImportServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -17,7 +17,7 @@ final class SanctionImportService implements SanctionImportServiceInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly SanctionListEntryRepository $repo,
+        private readonly SanctionListEntryRepositoryInterface $repo,
     ) {
     }
 

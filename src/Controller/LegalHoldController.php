@@ -10,7 +10,7 @@ namespace App\Complying\Controller;
 use App\Complying\Service\LegalHoldService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/compliance/legal-hold')]
 final class LegalHoldController

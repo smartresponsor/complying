@@ -11,7 +11,7 @@ namespace App\Complying\Controller;
 use App\Complying\ServiceInterface\CaseQueueServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class CaseController
 {
@@ -37,7 +37,7 @@ final class CaseController
     #[Route(path: '/compliance/cases/{id}/close', name: 'compliance_case_close', methods: ['POST'])]
     public function close(int $id, Request $request): JsonResponse
     {
-        $actor = $request->headers->get('X-User', 'system');
+        $actor = (string) $request->headers->get('X-User', 'system');
         $this->service->close($id, $actor);
 
         return new JsonResponse(['closed' => true]);

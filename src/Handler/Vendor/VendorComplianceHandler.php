@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace App\Complying\Handler\Vendor;
 
-use App\Service\Compliance\ComplianceDecisionLogWriter;
-use App\ServiceInterface\Compliance\CompliancePolicyServiceInterface;
+use App\Complying\Service\ComplianceDecisionLogWriter;
+use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
 
 final class VendorComplianceHandler
 {

@@ -12,7 +12,7 @@ use App\Complying\ServiceInterface\CaseQueueServiceInterface;
 use App\Complying\ServiceInterface\ComplianceAuditTrailServiceInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class AuditedCaseUiController
 {
@@ -25,7 +25,7 @@ final class AuditedCaseUiController
     #[Route(path: '/admin/compliance/cases/{id}/close-audited', name: 'admin_compliance_case_close_audited', methods: ['POST'])]
     public function close(int $id, Request $request): RedirectResponse
     {
-        $actor = $request->headers->get('X-User', 'admin');
+        $actor = (string) $request->headers->get('X-User', 'admin');
         $this->service->close($id, $actor);
         $this->audit->add('compliance.case.close', ['id' => $id, 'actor' => $actor]);
 

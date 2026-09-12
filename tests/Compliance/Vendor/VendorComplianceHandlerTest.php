@@ -5,20 +5,24 @@
  */
 declare(strict_types=1);
 
-namespace App\Tests\Compliance\Vendor;
+namespace App\Complying\Tests\Compliance\Vendor;
 
-use App\Integration\Compliance\Vendor\VendorComplianceHandler;
+use App\Complying\Handler\Vendor\VendorComplianceHandler;
 use PHPUnit\Framework\TestCase;
 
 final class VendorComplianceHandlerTest extends TestCase
 {
     public function testHandlerConstruct(): void
     {
-        $service = $this->createMock(\App\ServiceInterface\Compliance\CompliancePolicyServiceInterface::class);
+        $service = $this->createMock(\App\Complying\ServiceInterface\CompliancePolicyServiceInterface::class);
         $service->method('decide')->willReturn(
-            new \App\Service\Compliance\ComplianceDecisionDto('PERMIT', 'p1', 'v1', [])
+            new \App\Complying\DTO\ComplianceDecisionDTO('PERMIT', 'p1', 'v1', [])
         );
-        $writer = $this->createMock(\App\Service\Compliance\ComplianceDecisionLogWriter::class);
+        $writer = new \App\Complying\Service\ComplianceDecisionLogWriter(
+            $this->createMock(\Doctrine\ORM\EntityManagerInterface::class),
+            $this->createMock(\App\Complying\ServiceInterface\CaseQueueServiceInterface::class),
+            new \App\Complying\Service\Tenant\TenantProvider(new \Symfony\Component\HttpFoundation\RequestStack()),
+        );
         $handler = new VendorComplianceHandler($service, $writer);
         $handler(['id' => 'v1', 'country' => 'US']);
         $this->assertTrue(true);

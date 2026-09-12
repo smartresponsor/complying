@@ -11,7 +11,7 @@ namespace App\Complying\Controller;
 use App\Complying\Service\ReportingService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class ReportingController
 {
@@ -45,6 +45,6 @@ final class ReportingController
             ]);
         }
 
-        return new Response(json_encode($rows, \JSON_UNESCAPED_UNICODE), 200, ['Content-Type' => 'application/json']);
+        return new Response(json_encode($rows, \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR), 200, ['Content-Type' => 'application/json']);
     }
 }

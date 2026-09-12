@@ -18,7 +18,11 @@ final class OrderComplianceHandlerTest extends TestCase
         $service->method('decide')->willReturn(
             new \App\Complying\DTO\ComplianceDecisionDTO('PERMIT', 'p1', 'v1', [])
         );
-        $writer = $this->createMock(\App\Complying\Service\ComplianceDecisionLogWriter::class);
+        $writer = new \App\Complying\Service\ComplianceDecisionLogWriter(
+            $this->createMock(\Doctrine\ORM\EntityManagerInterface::class),
+            $this->createMock(\App\Complying\ServiceInterface\CaseQueueServiceInterface::class),
+            new \App\Complying\Service\Tenant\TenantProvider(new \Symfony\Component\HttpFoundation\RequestStack()),
+        );
         $handler = new OrderComplianceHandler($service, $writer);
 
         $handler(['id' => 'o1', 'total' => 100]);

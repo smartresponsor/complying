@@ -32,7 +32,7 @@ final class GuardEvaluateCommand extends Command
         $amount = (int) $input->getArgument('amountMinor');
         $facts = json_decode((string) $input->getArgument('facts'), true) ?: [];
         $res = $this->guard->decide(array_merge($facts, ['vendor_id' => $vendorId, 'amount_minor' => $amount]));
-        $output->writeln(json_encode($res, \JSON_PRETTY_PRINT));
+        $output->writeln(json_encode($res, \JSON_PRETTY_PRINT | \JSON_THROW_ON_ERROR));
 
         return Command::SUCCESS;
     }

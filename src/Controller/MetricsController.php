@@ -10,7 +10,7 @@ namespace App\Complying\Controller;
 
 use App\Complying\Service\MetricsRegistry;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class MetricsController
 {

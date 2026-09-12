@@ -70,7 +70,7 @@ final class PolicyRegistryService
                 'version' => $item->getPolicyVersion(),
                 'description' => $item->getDescription(),
                 'source' => $item->getSource(),
-                'updated_at' => $item->getUpdatedAt()->format(\DATE_ATOM),
+                'updated_at' => $item->getUpdatedAt()?->format(\DATE_ATOM),
             ];
         }
 

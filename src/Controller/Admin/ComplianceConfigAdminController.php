@@ -14,33 +14,33 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class ComplianceConfigAdminController
 {
-    #[Route(path: '/admin/compliance/config', name: 'admin_compliance_config_list', methods: ['GET'])]
     /**
-     * @return Response|array<string, mixed>
+     * @return array<string, mixed>
      */
-    public function list(ComplianceConfigRepository $repo): Response|array
+    #[Route(path: '/admin/compliance/config', name: 'admin_compliance_config_list', methods: ['GET'])]
+    public function list(ComplianceConfigRepository $repo): array
     {
         return $this->viewPayload('config-list', [
             'items' => $repo->findAll(),
         ]);
     }
 
-    #[Route(path: '/admin/compliance/config/new', name: 'admin_compliance_config_new', methods: ['GET', 'POST'])]
     /**
      * @return Response|array<string, mixed>
      */
+    #[Route(path: '/admin/compliance/config/new', name: 'admin_compliance_config_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator): Response|array
     {
         if ($request->isMethod('POST')) {
             $entity = new ComplianceConfig(
-                $request->request->get('keyName', ''),
-                $request->request->get('value') ?: null,
-                $request->request->get('scope') ?: null,
+                (string) $request->request->get('keyName', ''),
+                '' !== ($value = (string) $request->request->get('value', '')) ? $value : null,
+                '' !== ($scope = (string) $request->request->get('scope', '')) ? $scope : null,
             );
             $em->persist($entity);
             $em->flush();
@@ -54,10 +54,10 @@ final class ComplianceConfigAdminController
         ]);
     }
 
-    #[Route(path: '/admin/compliance/config/{id}/edit', name: 'admin_compliance_config_edit', methods: ['GET', 'POST'])]
     /**
      * @return Response|array<string, mixed>
      */
+    #[Route(path: '/admin/compliance/config/{id}/edit', name: 'admin_compliance_config_edit', methods: ['GET', 'POST'])]
     public function edit(int $id, Request $request, ComplianceConfigRepository $repo, EntityManagerInterface $em): Response|array
     {
         $item = $repo->find($id);
@@ -66,8 +66,10 @@ final class ComplianceConfigAdminController
         }
 
         if ($request->isMethod('POST')) {
-            $item->setValue($request->request->get('value') ?: null);
-            $item->setScope($request->request->get('scope') ?: null);
+            $value = (string) $request->request->get('value', '');
+            $scope = (string) $request->request->get('scope', '');
+            $item->setValue('' !== $value ? $value : null);
+            $item->setScope('' !== $scope ? $scope : null);
             $em->flush();
 
             return new RedirectResponse('/admin/compliance/config');

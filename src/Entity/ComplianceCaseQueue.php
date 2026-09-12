@@ -49,13 +49,13 @@ class ComplianceCaseQueue
     {
         $this->decision = $decision;
         $this->initializeObjectAudit();
-        $this->initializeObjectState($this->status);
+        $this->initializeObjectState(objectStatus: $this->status);
     }
 
     public function setStatus(string $status): void
     {
         $this->status = $status;
-        $this->setObjectState($status);
+        $this->setObjectStatus($status);
     }
 
     public function markProcessed(?\DateTimeImmutable $processedAt = null): void

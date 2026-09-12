@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace App\Complying\Entity;
 
 use App\Objecting\EntityTrait\Embeddable\ObjectAuditEmbeddableTrait;
-use App\Objecting\EntityTrait\Embeddable\ObjectVersionEmbeddableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: 'App\Complying\\Repository\\PolicyRegistryRepository')]
@@ -18,7 +17,6 @@ use Doctrine\ORM\Mapping as ORM;
 class CompliancePolicyRegistry
 {
     use ObjectAuditEmbeddableTrait;
-    use ObjectVersionEmbeddableTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -44,7 +42,6 @@ class CompliancePolicyRegistry
         $this->description = $description;
         $this->source = $source;
         $this->initializeObjectAudit();
-        $this->initializeObjectVersion($policyVersion);
     }
 
     public function setFrom(string $version, ?string $description, ?string $source): void
@@ -52,7 +49,6 @@ class CompliancePolicyRegistry
         $this->policyVersion = $version;
         $this->description = $description;
         $this->source = $source;
-        $this->setObjectVersion($version);
         $this->touchModified();
     }
 
@@ -78,6 +74,6 @@ class CompliancePolicyRegistry
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->getObjectUpdatedAt();
+        return $this->getModifiedAt();
     }
 }

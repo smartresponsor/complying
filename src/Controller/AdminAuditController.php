@@ -11,7 +11,7 @@ namespace App\Complying\Controller;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/compliance/admin/audit')]
 final class AdminAuditController
@@ -29,7 +29,7 @@ final class AdminAuditController
         $actor = $request->query->get('actor');
         if ($actor) {
             $sql .= ' AND payload LIKE :actor';
-            $params['actor'] = '%\"actor\":\"' + actor + '\"%';
+            $params['actor'] = '%\"actor\":\"'.$actor.'\"%';
         }
 
         $action = $request->query->get('action');

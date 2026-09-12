@@ -13,6 +13,6 @@ final class SloScriptExistsTest extends TestCase
 {
     public function testExists(): void
     {
-        $this->assertTrue(file_exists(__DIR__.'/../../../../tools/slo/compliance_slo_check.php'));
+        $this->assertTrue(file_exists(__DIR__.'/../../../tools/slo/compliance_slo_check.php'));
     }
 }

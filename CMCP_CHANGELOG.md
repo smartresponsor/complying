@@ -42,6 +42,46 @@
 - Repository remains `master`, no commits, no upstream; origin is `git@github.com:smartresponsor/complying.git`. Remote integration was intentionally not attempted because a safe initial baseline commit does not exist.
 - Zero authorized in-scope tails remain for the selected bounded RC workstream. The next repository-level RC track should first establish a reviewed initial Git baseline (excluding secrets), then normalize DI service-definition ownership/order and address the recorded structural/test debts in bounded waves.
 
+### Continuation acceptance pass — 2026-09-11
+
+#### Iteration 1 — factual local baseline and canon remap
+
+- Recovered the authoritative local execution plane through Console MCP. Contrary to the stale handoff, the repository already had a clean, tracked branch `rc/complying-di-hardening` at `c5207f89773339b8653c4e1f1e51940f22ddfa53`, synchronized with `origin/rc/complying-di-hardening`; no reset or destructive reconciliation was performed.
+- Re-read the Complying package manifest, journal, service/configuration surfaces and representative runtime/tests. Re-read sibling Objecting, Cruding, Viewing and Interfacing README/Composer contracts and Gating README/AGENTS/Composer enforcement surface.
+- Read actual Canonization normative files `Canon001TechnicalRoleFirstRule`, `Canon003DtoIsExplicitRule`, `Canon007Psr4IdentityRule`, `Canon011NoSilentFailureRule`, `Canon018ComposerIdentityMappingRule`, `Canon019NoAlternativeLayerTaxonomyRule`, `Canon020TypedSymfonyRoleRootRule`, and `Canon021CrudingOwnsGenericCrudRule`, plus the platform AGENTS projection.
+- Target-to-canon mapping: preserve role-first Symfony topology; explicit DTO identity; literal PSR-4 identity; observable mandatory failure; Composer-derived `App\\Complying\\` / `Compliance*` identity; no Adapter/Port/Domain taxonomy; typed Symfony role roots; generic CRUD remains owned by Cruding. Objecting owns reusable lifecycle fields but not Complying business `scope` or business policy revision strings.
+- Bounded market/domain check against current official OPA decision-log and AWS Audit Manager evidence-collection documentation reinforced the RC expectations: deterministic policy decisions, audit/debug traceability, explicit evidence/control association, and observable failures. Generic CRUD/rendering/shell infrastructure remains outside Complying.
+- Selected continuation RC-critical workstream: restore current Objecting/Symfony runtime compatibility and make the existing tests/DI/static boundaries executable without broad canon renames. Growth/post-RC remains the repository-wide Canon001/003/006/018/019/020/031/038 migration.
+
+#### Iteration 2 — material implementation
+
+- Replaced removed Objecting scope APIs in `ComplianceConfig` with a local nullable business `scope`, while retaining Objecting audit lifecycle ownership.
+- Removed misuse of Objecting technical integer versioning from `CompliancePolicyRegistry`; `policyVersion` remains an independent business revision. Updated current audit timestamp accessors and null-safe serialization.
+- Repaired Vendor handler imports, completed the sanction repository interface contract and DI alias, and moved `SanctionImportService` to the repository interface boundary.
+- Updated stale tests to current contracts instead of mocking final implementations; corrected repository-local E2E/SLO fixture paths and controller wiring assertions.
+- Migrated all 20 controller imports from removed Symfony `Routing\\Annotation\\Route` to Symfony 8 `Routing\\Attribute\\Route`; fixed AdminAudit PHP concatenation, JSON error handling, typed request boundaries, Doctrine repository generics, and nullable lifecycle serialization.
+- Aligned `ComplianceCaseQueue` with current Objecting `initializeObjectState(..., objectStatus:)` / `setObjectStatus()` APIs.
+
+#### Iteration 3 — verification and fix
+
+- PHPUnit is green: 30 tests, 43 assertions, exit 0; one deprecation and seven PHPUnit notices remain non-failing.
+- Symfony container lint is green; YAML lint is green for all 41 configuration files.
+- PHP-CS-Fixer dry-run is green: 0/196 files require changes.
+- PHPStan now passes the repaired controller/Route/JSON/request/repository boundary layer and reaches deeper pre-existing Entity/Objecting debt: Doctrine-managed property semantics, missing array value generics, and remaining old lifecycle usages in other entities. It remains red and is not suppressed.
+- Composer strict validation remains syntactically valid but warns on the four intentional local `*@dev` platform dependencies.
+
+#### Iteration 4 — debt closure and integration gate
+
+- Corrected the Doctrine parity script's invalid `doctrine:database:create` step for the file-backed SQLite test connection. The gate now reaches the next factual blocker: migrations are configured at `%kernel.project_dir%/migrations`, but the directory/migration baseline does not exist. No historical migration was fabricated from an unknown local database state.
+- Re-ran Gating. Green contracts include Canon002, Canon004/005/007, Canon013-016, Canon021-030, Canon032-037. Remaining release blockers are broad existing canon debt: Canon001 technical-role placement, Canon003 DTO suffixes, Canon006 role identity, Canon011 empty catch, Canon018 subject prefixes, Canon019 forbidden `src/Adapter`, Canon020 typed role roots, Canon031 PHPDoc coverage, Canon038 YAML prefixes, plus related structural/mirror findings.
+- No unrelated sibling repository was modified; all writes remain confined to `D:\\PhpstormProjects\\www\\Complying`.
+
+#### Iteration 5 — final acceptance and integration decision
+
+- The selected runtime/test/Symfony-8 hardening workstream is materially complete and locally verified by PHPUnit, container lint, YAML lint and PHP-CS-Fixer.
+- Full repository RC acceptance is still red because PHPStan, Gating, and Doctrine migration parity expose independent repository-wide debt. These failures are factual and intentionally remain visible; the quality gate is not being weakened or baselined away.
+- Integration policy: create a coherent commit and push/update a PR for this bounded hardening work, but do not merge while the formal release gates above remain red. The next RC track is the explicit canon/entity/migration migration wave, not speculative feature growth.
+
 ## engine-20260906000059-complying-d9b08d
 
 ### Iteration 1 — reconnaissance and baseline

@@ -12,7 +12,7 @@ use App\Complying\ServiceInterface\CaseQueueServiceInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class CaseUiController
 {
@@ -20,11 +20,11 @@ final class CaseUiController
     {
     }
 
-    #[Route(path: '/admin/compliance/cases', name: 'admin_compliance_cases', methods: ['GET'])]
     /**
-     * @return Response|array<string, mixed>
+     * @return array<string, mixed>
      */
-    public function list(): Response|array
+    #[Route(path: '/admin/compliance/cases', name: 'admin_compliance_cases', methods: ['GET'])]
+    public function list(): array
     {
         $cases = $this->service->listOpen();
 
@@ -47,7 +47,7 @@ final class CaseUiController
     #[Route(path: '/admin/compliance/cases/{id}/close', name: 'admin_compliance_case_close', methods: ['POST'])]
     public function close(int $id, Request $request): Response
     {
-        $actor = $request->headers->get('X-User', 'admin');
+        $actor = (string) $request->headers->get('X-User', 'admin');
         $this->service->close($id, $actor);
 
         return new RedirectResponse('/admin/compliance/cases');

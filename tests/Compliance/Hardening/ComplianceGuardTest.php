@@ -19,8 +19,11 @@ final class ComplianceGuardTest extends TestCase
         $svc = $this->createMock(\App\Complying\ServiceInterface\CompliancePolicyServiceInterface::class);
         $svc->method('decide')->willReturn(new ComplianceDecisionDTO('DENY', 'p1', 'v1', []));
 
-        $deferred = $this->createMock(\App\Complying\Service\ComplianceDeferredDecisionService::class);
         $logger = $this->createMock(\Psr\Log\LoggerInterface::class);
+        $deferred = new \App\Complying\Service\ComplianceDeferredDecisionService(
+            $this->createMock(\Symfony\Component\Messenger\MessageBusInterface::class),
+            $logger,
+        );
 
         $guard = new ComplianceGuard($svc, $deferred, $logger, false);
 

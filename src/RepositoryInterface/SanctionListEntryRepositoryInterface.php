@@ -6,4 +6,5 @@ namespace App\Complying\RepositoryInterface;
 
 interface SanctionListEntryRepositoryInterface
 {
+    public function existsByName(string $nameEntity): bool;
 }

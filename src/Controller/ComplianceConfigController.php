@@ -11,7 +11,7 @@ namespace App\Complying\Controller;
 use App\Complying\Service\ComplianceConfigService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 final class ComplianceConfigController
 {
@@ -37,7 +37,7 @@ final class ComplianceConfigController
             'key' => $cfg->getKeyName(),
             'value' => $cfg->getValue(),
             'scope' => $cfg->getScope(),
-            'updated_at' => $cfg->getUpdatedAt()->format(\DATE_ATOM),
+            'updated_at' => $cfg->getUpdatedAt()?->format(\DATE_ATOM),
         ]);
     }
 
@@ -54,7 +54,7 @@ final class ComplianceConfigController
             'key' => $cfg->getKeyName(),
             'value' => $cfg->getValue(),
             'scope' => $cfg->getScope(),
-            'updated_at' => $cfg->getUpdatedAt()->format(\DATE_ATOM),
+            'updated_at' => $cfg->getUpdatedAt()?->format(\DATE_ATOM),
         ]);
     }
 }
