@@ -8,17 +8,26 @@ declare(strict_types=1);
 
 namespace App\Complying\EventSubscriber;
 
-use App\Complying\Service\TenantResolver;
-use Symfony\Component\EventDispatcher\CommerceAttributeEntity\AsEventListener;
+use App\Complying\Resolver\ComplianceTenantResolver;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
+/**
+ * Subscribes to framework events and coordinates the compliance tenant request subscriber compliance reaction.
+ */
 #[AsEventListener(event: RequestEvent::class, method: 'onRequest', priority: 20)]
-final class TenantRequestSubscriber
+final class ComplianceTenantRequestSubscriber
 {
-    public function __construct(private readonly TenantResolver $resolver)
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly ComplianceTenantResolver $resolver)
     {
     }
 
+    /**
+     * Performs the on request behavior as part of the owning compliance responsibility.
+     */
     public function onRequest(RequestEvent $event): void
     {
         $req = $event->getRequest();

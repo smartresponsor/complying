@@ -16,14 +16,23 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * Exposes the compliance fixtures load command console operation for controlled compliance administration and automation.
+ */
 #[AsCommand(name: 'compliance:fixtures:load', description: 'Load demo fixtures for compliance')]
 final class ComplianceFixturesLoadCommand extends Command
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly EntityManagerInterface $em, private readonly string $fixturesDir = __DIR__.'/../../../../fixtures/compliance')
     {
         parent::__construct();
     }
 
+    /**
+     * Executes the configured console workflow and returns its process status code.
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $config = Yaml::parseFile($this->fixturesDir.'/config.yaml');

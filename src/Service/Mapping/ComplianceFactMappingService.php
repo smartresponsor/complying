@@ -6,11 +6,16 @@
 
 declare(strict_types=1);
 
-namespace App\Complying\Mapper;
+namespace App\Complying\Service\Mapping;
 
-final class FactMapper
+/**
+ * Coordinates the compliance fact mapping service responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceFactMappingService
 {
     /**
+     * Performs the map behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $payload
      *
      * @return array<string, mixed>

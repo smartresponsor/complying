@@ -9,17 +9,25 @@ declare(strict_types=1);
 namespace App\Complying\Handler\Billing;
 
 use App\Complying\Service\ComplianceDecisionLogWriter;
-use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
+use App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface;
 
-final class BillingComplianceHandler
+/**
+ * Coordinates the compliance billing handler responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceBillingHandler
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly CompliancePolicyServiceInterface $service,
+        private readonly CompliancePolicyEvaluationServiceInterface $service,
         private readonly ComplianceDecisionLogWriter $logWriter,
     ) {
     }
 
     /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $payment
      */
     public function __invoke(array $payment): void

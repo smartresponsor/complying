@@ -8,19 +8,28 @@ declare(strict_types=1);
 
 namespace App\Complying\EventSubscriber;
 
-use Symfony\Component\EventDispatcher\CommerceAttributeEntity\AsEventListener;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+/**
+ * Subscribes to framework events and coordinates the compliance hmac subscriber compliance reaction.
+ */
 #[AsEventListener(event: RequestEvent::class, method: 'onRequest', priority: 5)]
 final class ComplianceHmacSubscriber
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly string $sharedKey,
         private readonly int $tolerance = 120,
     ) {
     }
 
+    /**
+     * Performs the on request behavior as part of the owning compliance responsibility.
+     */
     public function onRequest(RequestEvent $event): void
     {
         $req = $event->getRequest();

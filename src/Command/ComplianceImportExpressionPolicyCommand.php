@@ -16,19 +16,31 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * Exposes the compliance import expression policy command console operation for controlled compliance administration and automation.
+ */
 #[AsCommand(name: 'compliance:policy:import-expr', description: 'Import expression-based compliance policies from yaml')]
-final class ImportExpressionPolicyCommand extends Command
+final class ComplianceImportExpressionPolicyCommand extends Command
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(private readonly Connection $connection)
     {
         parent::__construct();
     }
 
+    /**
+     * Defines the command name, arguments, options, and operator-facing description.
+     */
     protected function configure(): void
     {
         $this->addArgument('file', InputArgument::REQUIRED, 'yaml file with policies');
     }
 
+    /**
+     * Executes the configured console workflow and returns its process status code.
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $file = $input->getArgument('file');

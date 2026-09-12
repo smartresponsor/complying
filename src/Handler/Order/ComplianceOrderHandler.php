@@ -9,17 +9,25 @@ declare(strict_types=1);
 namespace App\Complying\Handler\Order;
 
 use App\Complying\Service\ComplianceDecisionLogWriter;
-use App\Complying\ServiceInterface\CompliancePolicyServiceInterface;
+use App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface;
 
-final class OrderComplianceHandler
+/**
+ * Coordinates the compliance order handler responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceOrderHandler
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
-        private readonly CompliancePolicyServiceInterface $service,
+        private readonly CompliancePolicyEvaluationServiceInterface $service,
         private readonly ComplianceDecisionLogWriter $logWriter,
     ) {
     }
 
     /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $order
      */
     public function __invoke(array $order): void

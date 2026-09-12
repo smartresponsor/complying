@@ -6,22 +6,31 @@
 
 declare(strict_types=1);
 
-namespace App\Complying\MessageHandler;
+namespace App\Complying\Handler;
 
 use App\Complying\Message\ComplianceIncidentCreated;
-use App\Complying\Service\WebhookNotifier;
+use App\Complying\Service\ComplianceWebhookNotifier;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Messenger\CommerceAttributeEntity\AsMessageHandler;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+/**
+ * Coordinates the compliance incident created handler responsibility within the Complying component and its explicit boundaries.
+ */
 #[AsMessageHandler(handles: ComplianceIncidentCreated::class)]
 final class ComplianceIncidentCreatedHandler
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly LoggerInterface $logger,
-        private readonly ?WebhookNotifier $notifier = null,
+        private readonly ?ComplianceWebhookNotifier $notifier = null,
     ) {
     }
 
+    /**
+     * Performs the invoke behavior as part of the owning compliance responsibility.
+     */
     public function __invoke(ComplianceIncidentCreated $msg): void
     {
         $this->logger->info('Compliance incident created', [

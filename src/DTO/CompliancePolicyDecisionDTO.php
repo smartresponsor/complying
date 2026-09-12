@@ -8,9 +8,14 @@ declare(strict_types=1);
 
 namespace App\Complying\DTO;
 
-final class PolicyDecision
+/**
+ * Carries immutable compliance policy decision d t o data across an explicit compliance application boundary.
+ */
+final class CompliancePolicyDecisionDTO
 {
     /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     *
      * @param array<string, mixed> $obligations
      */
     public function __construct(
@@ -22,6 +27,8 @@ final class PolicyDecision
     }
 
     /**
+     * Performs the from array behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $data
      */
     public static function fromArray(array $data): self

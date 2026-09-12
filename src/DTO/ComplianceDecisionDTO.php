@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace App\Complying\DTO;
 
+/**
+ * Carries immutable compliance decision d t o data across an explicit compliance application boundary.
+ */
 final class ComplianceDecisionDTO
 {
     /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     *
      * @param array<string, mixed> $facts
      */
     public function __construct(
