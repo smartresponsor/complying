@@ -29,7 +29,7 @@ final class ComplianceDecisionExportService
      */
     public function exportDecisions(?int $fromId = null, ?\DateTimeImmutable $fromDate = null): \Generator
     {
-        $sql = 'SELECT id, object_id, event_name, outcome, tenant_id, policy_id, policy_version, facts, decided_at FROM compliance_decision_log';
+        $sql = 'SELECT id, target_id AS object_id, event_name, outcome, tenant_id, policy_id, policy_version, facts, decided_at FROM compliance_decision_log';
         $where = [];
         $params = [];
 

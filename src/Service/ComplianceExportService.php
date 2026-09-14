@@ -42,7 +42,7 @@ final class ComplianceExportService
             $qb->andWhere('d.outcome = :outcome')->setParameter('outcome', $outcome);
         }
         if ($event) {
-            $qb->andWhere('d.objectId = :event')->setParameter('event', $event);
+            $qb->andWhere('d.targetId = :event')->setParameter('event', $event);
         }
 
         $items = $qb->orderBy('d.id', 'DESC')->setMaxResults(1000)->getQuery()->getResult();
@@ -55,7 +55,7 @@ final class ComplianceExportService
                 'outcome' => $item->getOutcome(),
                 'policy_id' => $item->getPolicyId(),
                 'policy_version' => $item->getPolicyVersion(),
-                'object_id' => $item->getObjectId(),
+                'object_id' => $item->getTargetId(),
                 'facts' => $item->getFacts(),
                 'decided_at' => $item->getDecidedAt()->format(\DATE_ATOM),
             ];

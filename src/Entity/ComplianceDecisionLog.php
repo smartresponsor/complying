@@ -44,8 +44,8 @@ class ComplianceDecisionLog
     #[ORM\Column(type: 'json')]
     private array $facts = [];
 
-    #[ORM\Column(type: 'string', length: 128, nullable: true)]
-    private ?string $objectId = null;
+    #[ORM\Column(name: 'target_id', type: 'string', length: 128, nullable: true)]
+    private ?string $targetId = null;
 
     #[ORM\Column(type: 'string', length: 64, nullable: true)]
     private ?string $tenantId = null;
@@ -63,7 +63,7 @@ class ComplianceDecisionLog
         array $facts,
         ?string $policyId = null,
         ?string $policyVersion = null,
-        ?string $objectId = null,
+        ?string $targetId = null,
         ?string $tenantId = null,
         ?string $eventName = null,
     ) {
@@ -71,7 +71,7 @@ class ComplianceDecisionLog
         $this->facts = $facts;
         $this->policyId = $policyId;
         $this->policyVersion = $policyVersion;
-        $this->objectId = $objectId;
+        $this->targetId = $targetId;
         $this->tenantId = $tenantId;
         $this->eventName = $eventName ?? 'compliance.decision';
         $this->decidedAt = new \DateTimeImmutable('now');
@@ -121,9 +121,9 @@ class ComplianceDecisionLog
     /**
      * Returns the get object id value exposed by this compliance responsibility.
      */
-    public function getObjectId(): ?string
+    public function getTargetId(): ?string
     {
-        return $this->objectId;
+        return $this->targetId;
     }
 
     /**

@@ -44,7 +44,7 @@ final class ComplianceFixturesLoadCommand extends Command
         $cases = Yaml::parseFile($this->fixturesDir.'/cases.yaml');
         foreach ($cases['cases'] ?? [] as $row) {
             $c = new ComplianceCaseQueue();
-            $c->setObjectId($row['object_id']);
+            $c->setTargetId($row['object_id']);
             $c->setStatus($row['status']);
             $this->em->persist($c);
         }

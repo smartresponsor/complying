@@ -37,8 +37,8 @@ class ComplianceCaseQueue
     #[ORM\Column(type: 'json')]
     private array $payload = [];
 
-    #[ORM\Column(type: 'string', length: 64, nullable: true)]
-    private ?string $objectId = null;
+    #[ORM\Column(name: 'target_id', type: 'string', length: 64, nullable: true)]
+    private ?string $targetId = null;
 
     #[ORM\Column(type: 'string', length: 64, nullable: true)]
     private ?string $tenantId = null;
@@ -102,11 +102,11 @@ class ComplianceCaseQueue
     }
 
     /**
-     * Updates the set object id value while preserving the owning compliance invariant.
+     * Updates the compliance target identifier while preserving the owning workflow invariant.
      */
-    public function setObjectId(?string $objectId): void
+    public function setTargetId(?string $targetId): void
     {
-        $this->objectId = $objectId;
+        $this->targetId = $targetId;
     }
 
     /**
@@ -160,11 +160,11 @@ class ComplianceCaseQueue
     }
 
     /**
-     * Returns the get object id value exposed by this compliance responsibility.
+     * Returns the compliance target identifier exposed by this workflow entry.
      */
-    public function getObjectId(): ?string
+    public function getTargetId(): ?string
     {
-        return $this->objectId;
+        return $this->targetId;
     }
 
     /**

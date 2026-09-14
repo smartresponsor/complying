@@ -33,7 +33,7 @@ final class ComplianceCheckSlaCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $rows = $this->connection->fetchAllAssociative(
-            "SELECT id, object_id FROM compliance_case_queue WHERE status='REVIEW' AND deadline_at < NOW()"
+            "SELECT id, target_id AS object_id FROM compliance_case_queue WHERE status='REVIEW' AND deadline_at < NOW()"
         );
         foreach ($rows as $row) {
             $output->writeln('SLA breach: '.$row['object_id']);

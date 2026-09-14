@@ -69,7 +69,7 @@ final class ComplianceRealtimeGuard
         $log = new ComplianceDecisionLog(
             $decision,
             $logFacts,
-            objectId: (string) $vendorId,
+            targetId: (string) $vendorId,
             eventName: 'compliance.realtime',
         );
         $this->em->persist($log);

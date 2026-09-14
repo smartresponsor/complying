@@ -33,7 +33,7 @@ final class ComplianceCaseQueueService implements ComplianceCaseQueueServiceInte
         $case = new ComplianceCaseQueue();
         $case->setStatus('new');
         $case->setPayload($decision->facts);
-        $case->setObjectId($objectId);
+        $case->setTargetId($objectId);
 
         $this->em->persist($case);
         $this->em->flush();
