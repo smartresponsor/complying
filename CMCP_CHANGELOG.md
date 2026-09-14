@@ -207,3 +207,11 @@
 - Final executable acceptance: `composer validate --strict --check-lock` PASS; `composer quality` PASS; PHPStan PASS (197 files); PHPUnit PASS (30 tests / 44 assertions, with one deprecation and seven PHPUnit notices); YAML PASS (41 files); container PASS; PHP-CS-Fixer PASS (0/197); Doctrine schema parity PASS; Gating PASS with 0 failed rules.
 - Remaining measured warnings are governance debt, not hard gate failures: Canon040 reports 11.4% line / 9.7% method / 28.7% branch coverage (`HIGH_TEST_DEBT`), and Canon042 lacks behavioral/UI coverage evidence. These require a substantive test-development workstream rather than synthetic coverage inflation.
 - Parallel pre-existing `.gating/**` modifications were not rewritten or selected for integration except the new repository-owned `.gating/profile/component/complying.yaml` required to run the Complying gate.
+
+#### Embedded Gating preservation and validation
+
+- The remaining pre-existing `.gating/**` worktree was inspected before cleanup and proved to be a coherent embedded Gating synchronization: Canon039–045 implementations/registry/calibration, Evidence Contract mirror validation, `.gate` → `.gating` path corrections, PHPUnit tooling, and updated Objecting field-name policy.
+- The embedded sync was preserved as a separate integration unit rather than reset or folded into the Complying RC commit.
+- `composer install` completed inside `.gating`; calibration PASS; PHPUnit unit PASS (1 test / 2 assertions); PHPStan PASS (89 files); PHP-CS-Fixer check PASS (0/91).
+- A portability defect in the imported `test:unit` script was repaired from global `phpunit` to repository-local `@php vendor/bin/phpunit`; a redundant Canon045 PHPStan guard was also removed and formatted through the embedded fixer.
+- After this tooling commit, the intended repository state is clean and eligible for guarded branch push.
