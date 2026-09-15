@@ -1,30 +1,11 @@
-services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-
-  App\Complying\:
-    resource: '../src/'
-    exclude:
-      - '../src/DependencyInjection/'
-      - '../src/Entity/'
-      - '../src/Kernel.php'
-      - '../src/ComplyingBundle.php'
-
-  App\Complying\Controller\:
-    resource: '../src/Controller/'
-    tags: ['controller.service_arguments']
-
-  App\Complying\ServiceInterface\CaseQueueServiceInterface: '@App\Complying\Service\CaseQueueService'
-
-  App\Complying\Service\IncidentWebhookService:
-    arguments:
-      $targetUrl: '%compliance.webhook.endpoint%'
-
 imports:
+  - { resource: compliance_services_autowire.yaml }
+  - { resource: packages/framework.yaml }
   - { resource: packages/security.yaml }
   - { resource: packages/doctrine.yaml }
-  - { resource: packages/compliance.yaml }
+  - { resource: packages/doctrine_migrations.yaml }
+  - { resource: packages/twig.yaml }
+  - { resource: packages/compliance_core.yaml }
   - { resource: packages/compliance_policy_registry.yaml }
   - { resource: packages/compliance_policy_bridge.yaml }
   - { resource: packages/compliance_policy_expression.yaml }
@@ -33,11 +14,8 @@ imports:
   - { resource: packages/compliance_hardening.yaml }
   - { resource: packages/compliance_hmac.yaml }
   - { resource: packages/compliance_webhook.yaml }
-  - { resource: packages/compliance_webhook_signing.yaml }
   - { resource: packages/compliance_privacy_mapper.yaml }
-  - { resource: packages/compliance_risk_ml.yaml }
-  - { resource: packages/compliance_s3_export.yaml }
   - { resource: packages/compliance_kernel_iter_3_1.yaml }
   - { resource: packages/compliance_kernel_iter_3_2.yaml }
   - { resource: packages/compliance_kernel_iter_3_3.yaml }
-  - { resource: packages/messenger_compliance.yaml }
+  - { resource: packages/messenger.yaml }

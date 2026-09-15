@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Retention;
 
+use App\Complying\Service\ComplianceRetentionService;
 use PHPUnit\Framework\TestCase;
 
 final class ComplianceRetentionServiceTest extends TestCase
 {
-    public function testServiceExists(): void
+    public function testServiceIsConcrete(): void
     {
-        $this->assertTrue(true);
+        $reflection = new \ReflectionClass(ComplianceRetentionService::class);
+
+        self::assertFalse($reflection->isAbstract());
     }
 }

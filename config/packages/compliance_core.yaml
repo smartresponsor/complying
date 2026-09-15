@@ -1,0 +1,82 @@
+parameters: { }
+
+services:
+  App\Complying\Service\Mapping\ComplianceFactMappingService: ~
+  App\Complying\Repository\ComplianceConfigRepository:
+    autowire: true
+    autoconfigure: true
+    tags: [ 'doctrine.repository_service' ]
+  App\Complying\Repository\CompliancePolicyRegistryRepository:
+    autowire: true
+    autoconfigure: true
+    tags: [ 'doctrine.repository_service' ]
+  App\Complying\Repository\ComplianceIncidentWebhookRepository:
+    autowire: true
+    autoconfigure: true
+    tags: [ 'doctrine.repository_service' ]
+  App\Complying\Repository\ComplianceSanctionListEntryRepository:
+    autowire: true
+    autoconfigure: true
+    tags: [ 'doctrine.repository_service' ]
+  App\Complying\RepositoryInterface\ComplianceSanctionListEntryRepositoryInterface: '@App\Complying\Repository\ComplianceSanctionListEntryRepository'
+  App\Complying\Provider\Tenant\ComplianceTenantProvider:
+    autowire: true
+    autoconfigure: true
+  App\Complying\ServiceInterface\ComplianceAuditTrailServiceInterface: '@App\Complying\Service\ComplianceAuditTrailService'
+  App\Complying\Service\ComplianceConfigService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceAuditTrailService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceConsentChecker:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceDecisionExportService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceDlpRedactor:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceExportService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceDeferredDecisionService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceDecisionLogWriter:
+    autowire: true
+    autoconfigure: true
+  App\Complying\ServiceInterface\ComplianceSanctionImportServiceInterface: '@App\Complying\Service\ComplianceSanctionImportService'
+  App\Complying\Service\ComplianceIncidentWebhookService:
+    autowire: true
+    autoconfigure: true
+    arguments:
+      $targetUrl: '%env(resolve:COMPLIANCE_WEBHOOK_URL)%'
+  App\Complying\Service\ComplianceRiskScoreService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceCaseQueueService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceSanctionImportService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceLegalHoldService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceMetricsRegistry:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\CompliancePolicyHistoryService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceReportingService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceRetentionService:
+    autowire: true
+    autoconfigure: true
+  App\Complying\Service\ComplianceCaseWorkerService:
+    autowire: true
+    autoconfigure: true

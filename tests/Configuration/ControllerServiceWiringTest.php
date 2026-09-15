@@ -11,7 +11,7 @@ final class ControllerServiceWiringTest extends TestCase
 {
     public function testControllerServicesDiscoverTheCanonicalControllerDirectory(): void
     {
-        $configuration = Yaml::parseFile(__DIR__.'/../../config/services.yaml');
+        $configuration = Yaml::parseFile(__DIR__.'/../../config/compliance_services_autowire.yaml');
         $controllerServices = $configuration['services']['App\\Complying\\Controller\\'] ?? null;
 
         self::assertIsArray($controllerServices);

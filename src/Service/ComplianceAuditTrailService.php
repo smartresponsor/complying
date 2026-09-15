@@ -13,8 +13,14 @@ use App\Complying\ServiceInterface\ComplianceAuditTrailServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Coordinates the compliance audit trail service responsibility within the Complying component and its explicit boundaries.
+ */
 final class ComplianceAuditTrailService implements ComplianceAuditTrailServiceInterface
 {
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly RequestStack $requestStack,
@@ -22,6 +28,8 @@ final class ComplianceAuditTrailService implements ComplianceAuditTrailServiceIn
     }
 
     /**
+     * Performs the add behavior as part of the owning compliance responsibility.
+     *
      * @param array<string, mixed> $payload
      */
     public function add(string $action, array $payload = []): void

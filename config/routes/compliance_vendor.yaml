@@ -1,4 +1,4 @@
 compliance_check_vendor:
-  path: /compliance/check-vendor
-  controller: App\Complying\Controller\VendorCheckController
+  path: /compliance/check/vendor
+  controller: App\Complying\Controller\ComplianceVendorCheckController
   methods: [POST]

@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Webhook;
 
-use App\Complying\Service\WebhookNotifier;
+use App\Complying\Service\ComplianceWebhookNotifier;
 use PHPUnit\Framework\TestCase;
 
 final class WebhookNotifierTest extends TestCase
@@ -15,7 +15,7 @@ final class WebhookNotifierTest extends TestCase
     public function testConstruct(): void
     {
         $client = $this->createMock(\Symfony\Contracts\HttpClient\HttpClientInterface::class);
-        $notifier = new WebhookNotifier($client, 'https://example.com', 'secret');
-        $this->assertInstanceOf(WebhookNotifier::class, $notifier);
+        $notifier = new ComplianceWebhookNotifier($client, 'https://example.com', 'secret');
+        $this->assertInstanceOf(ComplianceWebhookNotifier::class, $notifier);
     }
 }

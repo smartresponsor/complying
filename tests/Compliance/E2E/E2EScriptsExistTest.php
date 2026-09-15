@@ -13,8 +13,8 @@ final class E2EScriptsExistTest extends TestCase
 {
     public function testExists(): void
     {
-        $this->assertTrue(file_exists(__DIR__.'/../../../../tools/e2e/deny.php'));
-        $this->assertTrue(file_exists(__DIR__.'/../../../../tools/e2e/review.php'));
-        $this->assertTrue(file_exists(__DIR__.'/../../../../tools/e2e/permit.php'));
+        $this->assertTrue(file_exists(__DIR__.'/../../../tools/e2e/deny.php'));
+        $this->assertTrue(file_exists(__DIR__.'/../../../tools/e2e/review.php'));
+        $this->assertTrue(file_exists(__DIR__.'/../../../tools/e2e/permit.php'));
     }
 }

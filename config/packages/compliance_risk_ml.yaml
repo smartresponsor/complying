@@ -1,11 +1,11 @@
 services:
-  App\Complying\Service\ExternalRiskClient:
+  App\Complying\Service\ComplianceExternalRiskClient:
     arguments:
       $endpoint: '%env(EXTERNAL_RISK_ENDPOINT)%'
       $timeout: 2.5
 
-  App\Complying\Service\ExternalComplianceRiskScoreService:
-    decorates: 'App\Complying\Service\RiskScoreService'
+  App\Complying\Service\ComplianceExternalRiskScoreService:
+    decorates: 'App\Complying\Service\ComplianceRiskScoreService'
     arguments:
-      - '@App\Complying\Service\ExternalComplianceRiskScoreService.inner'
-      - '@App\Complying\Service\ExternalRiskClient'
+      - '@App\Complying\Service\ComplianceExternalRiskScoreService.inner'
+      - '@App\Complying\Service\ComplianceExternalRiskClient'

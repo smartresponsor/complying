@@ -23,6 +23,9 @@ final class ComplianceCaseLifecyclePolicy
         'discarded' => [],
     ];
 
+    /**
+     * Performs the can transition behavior as part of the owning compliance responsibility.
+     */
     public static function canTransition(string $from, string $to): bool
     {
         if ($from === $to) {
@@ -32,6 +35,9 @@ final class ComplianceCaseLifecyclePolicy
         return \in_array($to, self::TRANSITIONS[$from] ?? [], true);
     }
 
+    /**
+     * Performs the assert can transition behavior as part of the owning compliance responsibility.
+     */
     public static function assertCanTransition(string $from, string $to): void
     {
         if (!self::canTransition($from, $to)) {
@@ -39,7 +45,10 @@ final class ComplianceCaseLifecyclePolicy
         }
     }
 
-    /** @return list<string> */
+    /**
+     * Performs the allowed targets behavior as part of the owning compliance responsibility.
+     *
+     * @return list<string> */
     public static function allowedTargets(string $from): array
     {
         return self::TRANSITIONS[$from] ?? [];

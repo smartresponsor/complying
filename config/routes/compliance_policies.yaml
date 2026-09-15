@@ -1,9 +1,9 @@
 compliance_policies:
   path: /compliance/policies
-  controller: App\Complying\Controller\PolicyRegistryController::list
+  controller: App\Complying\Controller\CompliancePolicyRegistryController::list
   methods: [GET]
 
 compliance_policies_refresh:
   path: /compliance/policies/refresh
-  controller: App\Complying\Controller\PolicyRegistryController::refresh
+  controller: App\Complying\Controller\CompliancePolicyRegistryController::refresh
   methods: [POST]

@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Copyright (c) 2025 Oleksandr Tishchenko / Marketing America Corp.
+ */
+
+declare(strict_types=1);
+
+namespace App\Complying\Service\Metrics;
+
+use Doctrine\DBAL\Connection;
+
+/**
+ * Coordinates the compliance metrics exporter responsibility within the Complying component and its explicit boundaries.
+ */
+final class ComplianceMetricsExporter
+{
+    /**
+     * Initializes the collaborators and state required by this compliance responsibility.
+     */
+    public function __construct(private readonly Connection $connection)
+    {
+    }
+
+    /**
+     * Performs the collect behavior as part of the owning compliance responsibility.
+     */
+    public function collect(): string
+    {
+        $decisions = (int) $this->connection->fetchOne('SELECT COUNT(*) FROM compliance_decision_log');
+        $openCases = (int) $this->connection->fetchOne("SELECT COUNT(*) FROM compliance_case_queue WHERE status = 'new'");
+
+        $lines = [];
+        $lines[] = '# HELP sr_compliance_decisions_total Total decisions made by compliance';
+        $lines[] = '# TYPE sr_compliance_decisions_total counter';
+        $lines[] = 'sr_compliance_decisions_total '.$decisions;
+        $lines[] = '# HELP sr_compliance_cases_open Open compliance cases';
+        $lines[] = '# TYPE sr_compliance_cases_open gauge';
+        $lines[] = 'sr_compliance_cases_open '.$openCases;
+
+        return implode("\n", $lines)."\n";
+    }
+}

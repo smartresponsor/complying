@@ -1,6 +1,6 @@
 observability-otel sketch
 - service: ComplianceOtelTracer (wraps OTEL tracer)
-- decorator: TracingCompliancePolicyService
+- decorator: ComplianceTracingPolicyEvaluationService
   - span name: compliance.decide
   - attrs: outcome, tenant_id, policy_id, event
 - subscriber: ComplianceOtelHttpSubscriber for /compliance/*

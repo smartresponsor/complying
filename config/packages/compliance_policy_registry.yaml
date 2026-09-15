@@ -2,7 +2,7 @@ parameters:
   compliance.role.policies_endpoint: 'https://role.local/policy/list'
 
 services:
-  App\Complying\Service\PolicyRegistryService:
+  App\Complying\Service\CompliancePolicyRegistryService:
     autowire: true
     autoconfigure: true
     arguments:

@@ -7,12 +7,15 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Tenant;
 
+use App\Complying\Provider\Tenant\ComplianceTenantProvider;
 use PHPUnit\Framework\TestCase;
 
 final class TenantScopeSmokeTest extends TestCase
 {
-    public function testTenantScopePlaceholder(): void
+    public function testTenantProviderIsConcrete(): void
     {
-        $this->assertTrue(true);
+        $reflection = new \ReflectionClass(ComplianceTenantProvider::class);
+
+        self::assertFalse($reflection->isAbstract());
     }
 }

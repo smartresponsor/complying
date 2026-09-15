@@ -1,7 +1,16 @@
+includes:
+  - vendor/phpstan/phpstan-doctrine/extension.neon
+  - vendor/phpstan/phpstan-doctrine/rules.neon
+  - vendor/phpstan/phpstan-symfony/extension.neon
+
 parameters:
+  doctrine:
+    objectManagerLoader: tests/phpstan-doctrine.php
   level: 8
   paths:
     - src
     - tests
+  parallel:
+    maximumNumberOfProcesses: 1
   tmpDir: var/phpstan
   treatPhpDocTypesAsCertain: false

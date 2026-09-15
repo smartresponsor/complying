@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace App\Complying\Tests\Compliance\Ops;
 
-use App\Complying\Service\Metrics\MetricsExporter;
+use App\Complying\Service\Metrics\ComplianceMetricsExporter;
 use PHPUnit\Framework\TestCase;
 
 final class MetricsExporterTest extends TestCase
@@ -17,10 +17,9 @@ final class MetricsExporterTest extends TestCase
         $conn = $this->createMock(\Doctrine\DBAL\Connection::class);
         $conn->method('fetchOne')->willReturn(0);
 
-        $exporter = new MetricsExporter($conn);
+        $exporter = new ComplianceMetricsExporter($conn);
         $out = $exporter->collect();
 
-        $this->assertIsString($out);
         $this->assertStringContainsString('sr_compliance_decisions_total', $out);
     }
 }

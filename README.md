@@ -25,9 +25,9 @@ contracts belong to Interfacing.
 The iteration 3.3 realtime guard remains available through:
 
 - `config/packages/compliance_kernel_iter_3_3.yaml`
-- `App\\Complying\\Service\\PolicyRepository`
-- `App\\Complying\\Service\\RealtimeGuard`
-- `App\\Complying\\Service\\Payment\\PaymentGuard`
+- `App\\Complying\\Service\\CompliancePolicyRepository`
+- `App\\Complying\\Service\\ComplianceRealtimeGuard`
+- `App\\Complying\\Service\\Payment\\CompliancePaymentGuard`
 - `tests/RealtimeGuardSmokeTest.php`
 
 ## Example

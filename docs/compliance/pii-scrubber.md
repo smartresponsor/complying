@@ -1,3 +1,3 @@
 pii-scrubber sketch
-- service PiiScrubber
+- service CompliancePiiScrubber
 - apply before export/report

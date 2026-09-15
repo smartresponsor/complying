@@ -5,22 +5,28 @@
  */
 declare(strict_types=1);
 
-namespace App\Tests\Compliance\Vendor;
+namespace App\Complying\Tests\Compliance\Vendor;
 
-use App\Integration\Compliance\Vendor\VendorComplianceHandler;
+use App\Complying\Handler\Vendor\ComplianceVendorHandler;
 use PHPUnit\Framework\TestCase;
 
 final class VendorComplianceHandlerTest extends TestCase
 {
     public function testHandlerConstruct(): void
     {
-        $service = $this->createMock(\App\ServiceInterface\Compliance\CompliancePolicyServiceInterface::class);
+        $service = $this->createMock(\App\Complying\ServiceInterface\CompliancePolicyEvaluationServiceInterface::class);
         $service->method('decide')->willReturn(
-            new \App\Service\Compliance\ComplianceDecisionDto('PERMIT', 'p1', 'v1', [])
+            new \App\Complying\DTO\ComplianceDecisionDTO('PERMIT', 'p1', 'v1', [])
         );
-        $writer = $this->createMock(\App\Service\Compliance\ComplianceDecisionLogWriter::class);
-        $handler = new VendorComplianceHandler($service, $writer);
+        $em = $this->createMock(\Doctrine\ORM\EntityManagerInterface::class);
+        $em->expects(self::once())->method('persist')->with(self::isInstanceOf(\App\Complying\Entity\ComplianceDecisionLog::class));
+        $em->expects(self::once())->method('flush');
+        $writer = new \App\Complying\Service\ComplianceDecisionLogWriter(
+            $em,
+            $this->createMock(\App\Complying\ServiceInterface\ComplianceCaseQueueServiceInterface::class),
+            new \App\Complying\Provider\Tenant\ComplianceTenantProvider(new \Symfony\Component\HttpFoundation\RequestStack()),
+        );
+        $handler = new ComplianceVendorHandler($service, $writer);
         $handler(['id' => 'v1', 'country' => 'US']);
-        $this->assertTrue(true);
     }
 }

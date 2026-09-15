@@ -1,5 +1,5 @@
 incident-webhook sketch
-- service: IncidentWebhookService (send + retry)
+- service: ComplianceIncidentWebhookService (send + retry)
 - entity: compliance_incident_webhook (url, payload, attempts)
 - cli: bin/console compliance:webhook:retry
 - интеграция: дергать send() из message-bus handler’а

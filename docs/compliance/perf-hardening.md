@@ -1,4 +1,4 @@
 perf-hardening sketch
-- PolicyRegistryCache → не ходим в БД каждый раз
-- DecisionLogBulkWriter → вставляем пачкой
+- CompliancePolicyRegistryCache → не ходим в БД каждый раз
+- ComplianceDecisionLogBulkWriter → вставляем пачкой
 - подключается в местах массовых решений
