@@ -1729,7 +1729,7 @@
                     "homepage": "https://github.com/Nyholm"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "Mark Sagi-Kazar",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://github.com/sagikazarmark"
                 },
@@ -1927,7 +1927,7 @@
                     "homepage": "https://github.com/Nyholm"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "Mark Sagi-Kazar",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://github.com/sagikazarmark"
                 },
@@ -1937,7 +1937,7 @@
                     "homepage": "https://github.com/Tobion"
                 },
                 {
-                    "name": "Márk Sági-Kazár",
+                    "name": "Mark Sagi-Kazar",
                     "email": "mark.sagikazar@gmail.com",
                     "homepage": "https://sagikazarmark.hu"
                 }
@@ -5185,7 +5185,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kévin Dunglas",
+                    "name": "Kevin Dunglas",
                     "email": "dunglas@gmail.com"
                 },
                 {
@@ -6421,7 +6421,7 @@
             ],
             "authors": [
                 {
-                    "name": "Grégoire Pineau",
+                    "name": "Gregoire Pineau",
                     "email": "lyrixx@lyrixx.info"
                 },
                 {
@@ -6586,7 +6586,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kévin Dunglas",
+                    "name": "Kevin Dunglas",
                     "email": "dunglas@gmail.com"
                 },
                 {
@@ -7962,7 +7962,7 @@
             ],
             "authors": [
                 {
-                    "name": "Grégoire Pineau",
+                    "name": "Gregoire Pineau",
                     "email": "lyrixx@lyrixx.info"
                 },
                 {
@@ -8399,7 +8399,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kévin Dunglas",
+                    "name": "Kevin Dunglas",
                     "email": "dunglas@gmail.com"
                 },
                 {
@@ -8909,7 +8909,7 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering"
                 }
             ],
@@ -9136,7 +9136,7 @@
             ],
             "authors": [
                 {
-                    "name": "Andreas Möller",
+                    "name": "Andreas Moller",
                     "email": "am@localheinz.com",
                     "homepage": "https://localheinz.com"
                 }
@@ -9186,7 +9186,7 @@
                     "email": "igor@wiedler.ch"
                 }
             ],
-            "description": "Événement is a very simple event dispatching library for PHP",
+            "description": "Evenement is a very simple event dispatching library for PHP",
             "keywords": [
                 "event-dispatcher",
                 "event-emitter"
@@ -9237,7 +9237,7 @@
             ],
             "authors": [
                 {
-                    "name": "Théo FIDRY",
+                    "name": "Theo FIDRY",
                     "email": "theo.fidry@gmail.com"
                 }
             ],
@@ -9339,7 +9339,7 @@
                     "email": "fabien@symfony.com"
                 },
                 {
-                    "name": "Dariusz Rumiński",
+                    "name": "Dariusz Ruminski",
                     "email": "dariusz.ruminski@gmail.com"
                 }
             ],
@@ -9368,7 +9368,7 @@
             "dist": {
                 "type": "path",
                 "url": "../Gating",
-                "reference": "a71a2189bddfefad1b69a9e067be0299c52b080c"
+                "reference": "957e9d5ade835d089d11e13560cd1f1d24632ac6"
             },
             "require": {
                 "php": "^8.4",
@@ -9389,7 +9389,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Gating\\Gate\\": "src/"
+                    "App\\Gating\\": "src/"
                 }
             },
             "scripts": {
@@ -9772,7 +9772,7 @@
             ],
             "authors": [
                 {
-                    "name": "Ondřej Mirtes"
+                    "name": "Ondrej Mirtes"
                 },
                 {
                     "name": "Markus Staab"
@@ -9941,7 +9941,7 @@
             ],
             "authors": [
                 {
-                    "name": "Lukáš Unger",
+                    "name": "Lukas Unger",
                     "email": "looky.msc@gmail.com",
                     "homepage": "https://lookyman.net"
                 }
@@ -10424,7 +10424,7 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering",
                     "homepage": "https://clue.engineering/"
                 },
@@ -10500,7 +10500,7 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering",
                     "homepage": "https://clue.engineering/"
                 },
@@ -10575,7 +10575,7 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering",
                     "homepage": "https://clue.engineering/"
                 },
@@ -10649,7 +10649,7 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering",
                     "homepage": "https://clue.engineering/"
                 },
@@ -10727,7 +10727,7 @@
                     "homepage": "https://sorgalla.com/"
                 },
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering",
                     "homepage": "https://clue.engineering/"
                 },
@@ -10799,7 +10799,7 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering",
                     "homepage": "https://clue.engineering/"
                 },
@@ -10874,7 +10874,7 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
+                    "name": "Christian Luck",
                     "email": "christian@clue.engineering",
                     "homepage": "https://clue.engineering/"
                 },
@@ -11998,7 +11998,7 @@
                     "email": "fabien@symfony.com"
                 },
                 {
-                    "name": "Jean-François Simon",
+                    "name": "Jean-Francois Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -12151,7 +12151,7 @@
             ],
             "authors": [
                 {
-                    "name": "Kévin Dunglas",
+                    "name": "Kevin Dunglas",
                     "email": "kevin@dunglas.dev",
                     "homepage": "https://dunglas.dev"
                 },
