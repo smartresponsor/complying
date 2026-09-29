@@ -32,7 +32,7 @@ final class ComplianceCaseWorkerService
     public function process(int $limit = 50): int
     {
         $repo = $this->em->getRepository(ComplianceCaseQueue::class);
-        $items = $repo->findBy(['objectState.objectStatus' => 'new'], ['id' => 'ASC'], $limit);
+        $items = $repo->findBy(['objectState.status' => 'new'], ['id' => 'ASC'], $limit);
 
         $processed = 0;
         foreach ($items as $item) {

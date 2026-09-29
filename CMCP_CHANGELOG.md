@@ -1,5 +1,42 @@
 # CMCP Orchestration Journal
 
+## engine-20260913150348-complying-5c7628 — continuation 2026-09-29
+
+### Iteration 1 — reconnaissance and baseline
+
+- Re-read the authoritative task specification, root journal, README, Composer manifest, current Git/worktree state, and mandatory sibling contours Objecting, Cruding, Viewing, Interfacing, Gating, and Canonization through Console MCP.
+- Current repository state: master at a71c47603510004b108b0d6fc618f79c7ddb378b, two commits ahead of origin/master, with five tracked modifications plus a large untracked nested .gating subtree. No reset, clean, stash, or destructive reconciliation was performed.
+- Current Composer contract uses App\\Complying\\ => src/, direct dev-master path dependencies for Objecting, Cruding, Viewing, Interfacing and related first-party packages, PHPUnit/Panther/Playwright tooling, and Gating scripts.
+- Consulted Canonization rule texts: Canon001, Canon003, Canon018, Canon019, Canon020, Canon021, Canon039, Canon040, Canon041, Canon042, Canon043, Canon044, and Canon045. Mapping: preserve technical-role-first Symfony topology, explicit DTOs, Composer-derived Compliance* identity, no Domain/Application/Infrastructure/Port/Adapter roots, generic CRUD in Cruding, standard executable/behavioral testing evidence, exact dev-master sibling identity, Objecting entity-native system fields, and complete local Composer repository closure.
+- Market/enterprise baseline: OPA-style decision logging makes policy decisions auditable/offline-debuggable; AWS Audit Manager continuously collects evidence and maps it to controls. RC-critical scope therefore prioritizes reproducible policy/evidence lifecycle, executable verification, and release safety; generic CRUD, reusable system fields, shared presentation, and shell infrastructure stay outside Complying.
+- RC-critical workstream selected provisionally: verify the current dirty tree first, classify the unexpected embedded .gating materialization, then repair only factual Complying-owned release blockers without absorbing unrelated sibling/tooling state.
+- Growth workstream: coverage uplift toward Canon040/042 targets, richer policy explanation/evidence UX, and advanced diagnostics after RC correctness is preserved.
+- Planned gates: Composer validate, Gating, PHPUnit, PHPStan, Symfony YAML/container lint, Doctrine parity, UI/behavioral tooling where applicable, then final Git diff/status/upstream verification and guarded commit/push only for coherent in-scope files.
+
+
+### Iteration 2 — material implementation
+
+- Restored `.gating/README.md` to the Complying consumer-artifact boundary after detecting that it had been overwritten by the Gating repository README; the unrelated untracked embedded `.gating/**` subtree was preserved because destructive cleanup is forbidden.
+- Closed Canon045 runtime dependency resolution by exposing the transitive `../Failing` path repository at the Complying root. Cruding currently requires `failing/failure: dev-master`; a guarded Composer update installed that local package and refreshed the reachable first-party/Symfony lock graph.
+- Restored the repository-owned `.gating/profile/component/complying.yaml` and migrated it from the obsolete enabled-rule list to the current Gating profile contract with `nameEntity: compliance`, typed-layer/service-interface declarations, route ownership, and release files.
+- Repaired the two queue queries from stale `objectState.objectStatus` criteria to Doctrine's factual embedded property path `objectState.status`, matching current Objecting's entity-native `status` field.
+- Applied Canon055 to current human-facing surfaces: README and development/production Composer descriptions now use neutral multi-domain SaaS platform terminology instead of promoting one consumer alias to platform identity.
+
+### Iteration 3 — verification and fix
+
+- Initial Symfony/YAML/container/Doctrine failures were traced to the missing Failing transitive repository closure; after the root path-repository fix, YAML lint, container lint, and Doctrine schema parity all passed.
+- PHPStan then exposed exactly two stale embedded-field criteria; after the Objecting-aligned query repair, PHPStan passed all 197 analyzed files.
+- Gating initially exposed Canon055 and legacy profile-contract failures; after the documentation/metadata/profile migration, Gating passed 9/9 active rules with zero failures or warnings.
+- PHP-CS-Fixer exposed repository-wide line-ending/docblock formatting drift. Running the canonical write fixer normalized the worktree; a subsequent dry-run reported 0/197 fixable files. Although many files were rewritten on disk, Git's content diff remained limited to the substantive tracked paths plus the explicit profile file.
+
+### Iteration 4 — debt closure and integration preparation
+
+- Full `composer quality` PASS: YAML 41/41, Symfony container PASS, PHP-CS-Fixer 0/197, PHPStan PASS, PHPUnit 30 tests / 44 assertions (one deprecation and seven non-failing notices), explicit-profile Gating PASS, and package-level gate PASS with only expected no-profile skips in the latter invocation.
+- `composer doctrine:schema:parity` PASS: latest migration `Version20260914082300`, mappings correct, database schema in sync, no pending migration.
+- `composer validate --strict --check-lock` PASS after the dependency-closure lock refresh.
+- No user-observable UI behavior was materially changed; browser/visual verification is therefore not applicable to this implementation pass. The behavioral change is the queue repository criterion and it is covered by static/container/schema/unit acceptance.
+- The content-bearing diff is bounded to the journal, README, Composer manifests/lock, Kernel, the two case queue services, plus the repository-owned Gating profile. The large untracked embedded `.gating/**` tree remains intentionally excluded and untouched.
+
 ## engine-20260911150912-complying-03d180
 
 ### Iteration 1 — reconnaissance and baseline

@@ -1,6 +1,6 @@
 # Complying
 
-Complying is the Symfony-oriented compliance component of the SmartResponsor
+Complying is the Symfony-oriented compliance component of the multi-domain SaaS
 platform. It owns compliance policy evaluation, explainable decisions, audit
 records, retention and legal-hold operations, consent and sanction workflows,
 and the operational integration points required by those responsibilities.

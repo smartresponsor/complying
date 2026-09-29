@@ -46,7 +46,7 @@ final class ComplianceCaseQueueService implements ComplianceCaseQueueServiceInte
      */
     public function listOpen(): array
     {
-        return $this->em->getRepository(ComplianceCaseQueue::class)->findBy(['objectState.objectStatus' => 'new'], ['id' => 'DESC'], 200);
+        return $this->em->getRepository(ComplianceCaseQueue::class)->findBy(['objectState.status' => 'new'], ['id' => 'DESC'], 200);
     }
 
     /**

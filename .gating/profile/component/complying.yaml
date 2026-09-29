@@ -1,0 +1,19 @@
+component:
+  name: Complying
+  nameEntity: compliance
+  namespace: App\Complying
+  business_prefix: Compliance
+  database_prefix: compliance_
+  typed_layers_required: true
+  service_interface_mirror: true
+  route_owner_root: compliance
+  route_owner_roots:
+    - compliance
+  mutation_mode: guarded
+  secret_scan: enabled
+  docblock_preservation: enabled
+  release:
+    evidence_required: false
+    required_files:
+      - composer.json
+      - composer.prod.json
