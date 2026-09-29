@@ -37,6 +37,14 @@
 - No user-observable UI behavior was materially changed; browser/visual verification is therefore not applicable to this implementation pass. The behavioral change is the queue repository criterion and it is covered by static/container/schema/unit acceptance.
 - The content-bearing diff is bounded to the journal, README, Composer manifests/lock, Kernel, the two case queue services, plus the repository-owned Gating profile. The large untracked embedded `.gating/**` tree remains intentionally excluded and untouched.
 
+### Iteration 5 — final acceptance and handoff
+
+- Signed integration commit `37e71465e7caf87b33aab64d122c1ede9efc1c15` (`Harden Complying dependency and gate integration`) was pushed successfully to `origin/master`; post-push branch state is `ahead=0`, `behind=0`.
+- Post-integration tracked content diff is empty. Git status still reports formatter-touched tracked paths plus the pre-existing untracked embedded `.gating/**` snapshot, but those tracked paths have no content diff and the untracked subtree was intentionally excluded from the commit; no destructive cleanup was attempted.
+- Final deterministic acceptance for the integrated content remains GREEN: strict Composer validation, full `composer quality`, Doctrine schema parity, PHPStan, PHPUnit, YAML/container lint, PHP-CS-Fixer, and current Gating all pass. PHPUnit retains one deprecation and seven notices as non-blocking debt.
+- No user-observable UI behavior changed, so Panther/Playwright screenshots are not applicable and no new visual artifact is required for this task.
+- The bounded RC-critical objective selected from the repository facts is complete. Growth work remains test-coverage uplift and richer compliance evidence/explanation UX; it is intentionally not a release blocker for this completed workstream.
+
 ## engine-20260911150912-complying-03d180
 
 ### Iteration 1 — reconnaissance and baseline
