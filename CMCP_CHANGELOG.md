@@ -1,5 +1,37 @@
 # CMCP Orchestration Journal
 
+### Continuation after external dependency recheck
+
+- Rechecked the owning sibling surfaces after the previous Complying commit. Cruding still imports App\\Tabling\\Service\\TableColumnMetadataBuilder in CrudInterfacingProviderResourceBuilder and CrudResourceColumnBuilder, while Tabling still defines App\\Tabling\\Builder\\TableColumnMetadataBuilder. No sibling source was modified from this Complying task.
+- Re-ran composer quality; it deterministically fails at the first Symfony YAML/bootstrap step on that exact namespace mismatch. This remains the current aggregate RC blocker.
+- Searched Gating for a current Complying owner-side profile and found none; the canonical profile-less package gate therefore remains useful targeted evidence but not a substitute for absent profile-specific Canon004/046/047 evaluation.
+- Attempted post-mutation Inspecting again with the bounded Console MCP capability; the capability timed out without returning a report. No inspection result was inferred or fabricated.
+- The current Complying integration commit remains 94b10ddbdd323bfe3eaf5db1167ac7a0eb7f7e65 on master and synchronized with origin/master. The apparent broad PHP/test modifications remain content-diff empty; the only new content diff in this continuation is orchestration journal evidence.
+
+Что имеем? Complying-owned remediation is integrated and targeted PHPStan/Gating/Composer checks are green; the aggregate gate has one reproducible external bootstrap blocker.
+
+Что осталось? Cruding must consume the canonical Tabling Builder namespace (or Tabling must intentionally publish the contracted public type) in its own repository, then Complying quality/Doctrine/full acceptance can be rerun. No compliant in-scope shim remains to implement here.
+
+## engine-20260930142109-complying-158eaf — 2026-09-30
+
+### Reconnaissance and implementation checkpoint
+
+- Re-read the authoritative execution specification and the fresh CanonScanning RED report; mapped current failures to Canon004, Canon022, Canon045, Canon046, Canon047, Canon052, and Canon055.
+- Read normative Canonization texts for Canon004/022/023/024/045/046/047/052/055 plus Gating and mandatory Objecting/Cruding/Viewing/Interfacing package contracts.
+- Preserved concurrent/pre-existing worktree state. The supplied Canon055 evidence is stale against current neutral README/Composer wording; the current Canon052 remediation removes consumer-local .gating policy/profile state and the legacy ad-hoc composer gating invocation.
+- Completed Canon022 runtime baseline in Complying: added failing/failure as a direct development and production dependency and registered App\\Failing\\FailingBundle in config/bundles.php.
+- Reconciled composer.lock with a package-scoped composer update for failing/failure; Composer reported no dependency graph changes but rewrote the lock content hash.
+- Deterministic verification: composer validate --strict --check-lock PASS; PHPStan PASS for 197 files; package gate PASS with 0 failures; PHPUnit PASS 30 tests / 44 assertions with one deprecation and seven notices.
+- Full composer quality is currently blocked before Complying YAML validation by a sibling contract drift: Cruding requests App\\Tabling\\Service\\TableColumnMetadataBuilder while current Tabling defines App\\Tabling\\Builder\\TableColumnMetadataBuilder. This is owned by Cruding/Tabling and was not patched from the Complying task.
+- Post-mutation Inspecting was attempted through Console MCP but the synchronous Inspecting capability timed out before returning a report; no result was fabricated.
+- No user-observable UI behavior was changed; visual/behavioral screenshot evidence is not applicable to this checkpoint.
+
+### Remaining RC work
+
+- Fresh full-profile canon verification is still required for the current fingerprint; the standard profile-less package gate does not exercise Canon004/046/047.
+- Canon004 entity suffix migration, Canon046 Tenant-to-Vendor identity migration, and Canon047 Doctrine-manager ownership remain source-wide structural work unless a fresh full canon pass proves those upstream findings stale.
+- Overall quality cannot be declared GREEN until the Cruding↔Tabling sibling drift is resolved in its owning repository and Complying quality is re-run.
+
 ## engine-20260930141902-complying-eb8310 — 2026-09-30
 
 ### Reconnaissance, canon mapping, and RC workstream
