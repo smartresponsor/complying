@@ -1,5 +1,34 @@
 # CMCP Orchestration Journal
 
+## engine-20260930141902-complying-eb8310 — 2026-09-30
+
+### Reconnaissance, canon mapping, and RC workstream
+
+- Read the authoritative execution specification, current Git/worktree state, README, Composer manifests, PHPStan/PHPUnit configuration, existing orchestration journal, mandatory Objecting/Cruding/Viewing/Interfacing contour, fresh CanonScanning static-analysis and Inspecting evidence, and current Gating/Canonization integration contracts through Console MCP.
+- Baseline: master at 50cf8eabe34076e722361c466af9d86325e599d7, synchronized with origin/master. The large PHP/test status surface has no content diff; substantive pre-existing worktree state is the deletion of consumer-local .gating README/profile material.
+- Fresh report interpretation: the supplied static-analysis RED was caused by unresolved App\\Failing\\Contract\\FailureProviderInterface, but the current Composer closure already contains the prior remediation and current composer phpstan passes all 197 files. The supplied Inspecting report has zero php-structure findings; its semgrep timeout is observational, not a PHP-structure blocker.
+- Canon052 mapping: canonical PHP consumers install gating/gate in require-dev, resolve ../Gating with symlink=true in development, expose vendor/bin/gating through the gate script, include @gate in quality, and keep consumer .gating artifact-only. The previous Complying gating script/profile duplicated the owner policy path and violated the new distribution model.
+- Canon045 remains satisfied by the existing local first-party path repository closure, including the Failing repository required transitively by Cruding.
+- Market/enterprise baseline inside Complying responsibility: mature compliance platforms emphasize deterministic policy decisions, auditable evidence, retention/legal-hold safety, sanctions/consent workflows, explainability, and operational diagnostics. Generic CRUD, reusable system fields, shared presentation, shell integration, and executable canon ownership remain outside Complying.
+- RC-critical workstream: eliminate the obsolete consumer-local Gating profile invocation and make composer quality rely only on the installed Gating package contract. Growth workstream: coverage uplift and richer policy/evidence UX remain post-RC unless a deterministic gate promotes them.
+
+### Material implementation
+
+- The current in-scope worktree materialized the Canon052 migration: the obsolete composer gating script/profile invocation is removed, @gating is removed from quality, and the canonical @gate package invocation remains. The pre-existing tracked consumer .gating README/profile deletions align with the artifact-only boundary and were preserved without destructive cleanup.
+- The current worktree also promotes failing/failure to an explicit development/production dependency and registers FailingBundle, closing the supplied static-analysis bootstrap failure without weakening PHPStan. A package-scoped Composer update refreshed the lock/autoload state.
+- No Gating owner source, sibling repository source, or user-observable UI was modified.
+
+### Verification and current blocker
+
+- Before dependency refresh, composer phpstan passed all 197 files and composer gate passed with 0 failures/warnings, confirming the supplied static-analysis RED is remediated and package-installed Gating works without a consumer-local profile.
+- After the explicit failing/failure requirement changed composer.json, strict Composer validation correctly reported an out-of-date lock. A guarded package-scoped composer update failing/failure --with-all-dependencies refreshed composer.lock and autoload; composer validate --strict --check-lock then passed.
+- Full composer quality and doctrine:schema:parity currently stop during Symfony bootstrap on an external first-party contract drift: current Cruding imports App\\Tabling\\Service\\TableColumnMetadataBuilder, while current Tabling exposes App\\Tabling\\Builder\\TableColumnMetadataBuilder. This mismatch is owned by the Cruding/Tabling dependency boundary and cannot be repaired inside Complying without violating repository responsibility boundaries.
+- No browser/mobile behavior or UI surface changed; runtime restart and visual evidence are not applicable to this pass.
+
+Что имеем? Canon052 consumer integration and the original Failing/PHPStan bootstrap debt are materially addressed in Complying; Composer metadata is lock-consistent and targeted static/Gating checks are green.
+
+Что осталось? The RC aggregate gate remains blocked by the external Cruding ↔ Tabling namespace contract mismatch; after that owning repository is repaired, rerun quality and Doctrine parity here, then perform final Git integration.
+
 ## engine-20260913150348-complying-5c7628 — continuation 2026-09-29
 
 ### Iteration 1 — reconnaissance and baseline

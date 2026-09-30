@@ -15,6 +15,7 @@
     "doctrine/doctrine-migrations-bundle": "^4.0",
     "doctrine/orm": "^3.5",
     "easycorp/easyadmin-bundle": "^5.0",
+    "failing/failure": "dev-master",
     "interfacing/interface": "dev-master",
     "objecting/object": "dev-master",
     "open-telemetry/api": "^1.10",
@@ -182,14 +183,12 @@
     "canon:phpdoc": "@php tools/canon/compliance_phpdoc_complete.php",
     "canon:rename-types": "@php tools/canon/compliance_type_canonicalize.php",
     "canon:rename-yaml": "@php tools/canon/compliance_yaml_rename.php",
-    "gating": "@php ../Gating/bin/gating check --target=. --profile=.gating/profile/component/complying.yaml --severity-config=../Gating/.gating/config/severity.yaml",
     "quality": [
       "@lint:yaml",
       "@lint:container",
       "@php-cs-fixer",
       "@phpstan",
       "@test",
-      "@gating",
       "@gate"
     ],
     "gate": "@php vendor/bin/gating check --target=."
